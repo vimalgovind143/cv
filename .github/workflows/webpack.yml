@@ -27,4 +27,3 @@ jobs:
 
     - name: run webpack
       run: npx webpack
-    
