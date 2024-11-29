@@ -1,287 +1,193 @@
 import {
-  AmbitLogo,
-  BarepapersLogo,
-  BimLogo,
-  CDGOLogo,
-  ClevertechLogo,
-  ConsultlyLogo,
-  EvercastLogo,
-  Howdy,
-  JarockiMeLogo,
-  JojoMobileLogo,
-  Minimal,
-  MobileVikingsLogo,
-  MonitoLogo,
-  NSNLogo,
-  ParabolLogo,
-  TastyCloudLogo,
-  YearProgressLogo,
+  AmthalLogo
 } from "@/images/logos";
-import { GitHubIcon, LinkedInIcon, XIcon } from "@/components/icons";
+import { GitHubIcon, LinkedInIcon, XIcon, IGIcon } from "@/components/icons";
 
 export const RESUME_DATA = {
-  name: "Bartosz Jarocki",
-  initials: "BJ",
-  location: "Wrocław, Poland, CET",
-  locationLink: "https://www.google.com/maps/place/Wrocław",
+  name: "Vimal Govind Markkasseri",
+  initials: "Mr.",
+  location: "Manama, Bahrain GMT+3",
+  locationLink: "https://www.google.com/maps/place/bahrain",
   about:
-    "Detail-oriented Full Stack Engineer dedicated to building high-quality products.",
+    "Senior Full Stack Engineer specializing in enterprise software development and technical leadership.",
   summary:
-    "As a Full Stack Engineer, I specialize in taking products from concept to launch. I excel in leading teams and creating environments where individuals perform at their best. Currently, I work mostly with TypeScript, React, Node.js, and GraphQL. I have over 8 years of experience working remotely with companies worldwide.",
-  avatarUrl: "https://avatars.githubusercontent.com/u/1017620?v=4",
-  personalWebsiteUrl: "https://jarocki.me",
+    "A seasoned Full Stack Engineer with over 16 years of experience in architecting and delivering enterprise-level ERP solutions. My core expertise encompasses .NET Core, SQL, and modern web technologies including React and Angular. I excel in leading development teams and implementing complex business solutions, with particular focus on ERP systems for financial management, payroll, and inventory control. My approach combines technical excellence with a strong emphasis on delivering measurable business value.",
+  avatarUrl: "https://cdn2.mallats.com/AmthalGroup/img/team/Vimal.jpg",
+  personalWebsiteUrl: "https://hellovg.win",
   contact: {
-    email: "bartosz.jarocki@hey.com",
-    tel: "+48530213401",
+    email: "hey@hellovg.win",
+    tel: "+973364AB541",
     social: [
       {
         name: "GitHub",
-        url: "https://github.com/BartoszJarocki",
+        url: "https://github.com/vimalgovind143",
         icon: GitHubIcon,
       },
       {
         name: "LinkedIn",
-        url: "https://www.linkedin.com/in/bjarocki/",
+        url: "https://www.linkedin.com/in/vimalgovind/",
         icon: LinkedInIcon,
       },
       {
         name: "X",
-        url: "https://x.com/BartoszJarocki",
+        url: "https://x.com/vimalgovind",
         icon: XIcon,
+      },
+      {
+        name: "Instagram",
+        url: "https://instagram.com/vimalgovind",
+        icon: IGIcon,
       },
     ],
   },
   education: [
     {
-      school: "Wrocław University of Technology",
-      degree: "Bachelor's Degree in Control systems engineering and Robotics",
+      school: "NIIT, Bengaluru, India",
+      degree: "Diploma in Software Engineering",
       start: "2007",
-      end: "2010",
+      end: "2008",
+    },
+    {
+      school: "MEA Engineering College, Kerala, India",
+      degree: "Bachelor's Degree in Information Technology",
+      start: "2003",
+      end: "2007",
     },
   ],
   work: [
     {
-      company: "Film.io",
-      link: "https://film.io",
-      badges: ["Remote"],
-      title: "Software Architect",
-      logo: ConsultlyLogo,
-      start: "2024",
-      end: null,
+      company: "Al Amthal Group BSC Closed, Manama Bahrain",
+      link: "https://amthalgroup.com",
+      badges: ["Full-Time"],
+      title: "Support Manager",
+      logo: AmthalLogo,
+      start: "2016",
+      end: "Current",
       description:
-        "Leading the development of the Film.io platform. Technologies: React, TypeScript, Node.js",
+        "Lead the software support division, managing critical enterprise applications and driving system improvements. Key achievements include:" +
+        " Successfully migrated legacy systems to modern cloud infrastructure, implemented automated deployment processes, and reduced support response time by 40%." +
+        " Expert in enterprise solutions including payroll, accounting, sales, and inventory management systems.",
     },
     {
-      company: "Parabol",
-      link: "https://parabol.co",
-      badges: ["Remote"],
-      title: "Senior Full Stack Developer",
-      logo: ParabolLogo,
-      start: "2021",
-      end: "2024",
-      description:
-        "Implemented new features, led a squad, improved code delivery process, and initiated migration from Emotion to Tailwind CSS. Technologies: React, TypeScript, GraphQL",
-    },
-    {
-      company: "Clevertech",
-      link: "https://clevertech.biz",
-      badges: ["Remote"],
-      title: "Lead Android Developer → Full Stack Developer",
-      logo: ClevertechLogo,
-      start: "2015",
-      end: "2021",
-      description:
-        "Created Android mobile apps and led teams for companies like Vision Media, DKMS, and AAA. Built a live streaming application for Evercast from scratch. Technologies: Android, Kotlin, React, TypeScript, GraphQL",
-    },
-    {
-      company: "Jojo Mobile",
-      link: "https://bsgroup.eu/",
-      badges: [],
-      title: "Android Developer → Lead Android Developer",
-      logo: JojoMobileLogo,
+      company: "Al Amthal Group BSC Closed, Manama Bahrain",
+      link: "https://amthalgroup.com",
+      badges: ["Full-Time"],
+      title: "Senior Software Engineer",
+      logo: AmthalLogo,
       start: "2012",
-      end: "2015",
+      end: 2016,
       description:
-        "Led the Android team and developed apps for major Polish companies like LOT, Polskie Radio, Agora, and PolskaPress",
-    },
-    {
-      company: "Nokia Siemens Networks",
-      link: "https://www.nokia.com",
-      badges: [],
-      title: "C/C++ Developer",
-      logo: NSNLogo,
-      start: "2010",
-      end: "2012",
-      description: "Developed and tested software for LTE base stations",
+        "Spearheaded ERP software development initiatives, focusing on new feature development and system architecture. Notable contributions include:" +
+        " Designed and implemented core modules for payroll and accounting systems, resulting in 30% improved processing efficiency." +
+        " Led the development of integrated inventory management solutions for enterprise clients.",
     },
   ],
   skills: [
-    "JavaScript",
-    "TypeScript",
-    "React/Next.js/Remix",
-    "Node.js",
-    "GraphQL",
-    "Relay",
-    "WebRTC",
+    ".NET Core",
+    "asp.net",
+    "SQL/MSSQL",
+    "html/css",
+    "angular",
+    "react",
+    "ERP",
+    "Accounting",
+    "Api",
+    "Microservices",
+    "Clean Architecture",
+    "Docker",
+    "Kubernetes",
+    "Azure",
+    "SQL Server",
+    "Entity Framework Core",
+    "SignalR",
+    "Web APIs",
+    "REST APIs",
+    "Git"
   ],
   projects: [
     {
-      title: "Parabol",
+      title: "Migration to .NET Core",
       techStack: [
-        "Full Stack Developer",
-        "TypeScript",
-        "React",
-        "Node.js",
-        "GraphQL",
+        "ASP.NET Core",
+        "EF Core",
+        "REST APIs",
+        "Clean Architecture"
       ],
       description:
-        "The Agile meeting co-pilot that delivers better meetings with less effort",
-      logo: ParabolLogo,
+        "Led the modernization of legacy ERP systems to .NET Core, implementing Clean Architecture principles. Key achievements include:" +
+        " Successfully designed and implemented a scalable microservices architecture, improved system performance by 60%, and reduced deployment time by 75%.",
+      logo: AmthalLogo,
       link: {
-        label: "github.com",
-        href: "https://parabol.co/",
+        label: "amthalgroup.com",
+        href: "https://www.amthalgroup.com",
       },
     },
     {
-      title: "Evercast",
+      title: "Enterprise Payroll System",
       techStack: [
-        "Lead Frontend Developer",
-        "TypeScript",
-        "React",
-        "Node.js",
-        "GraphQL",
+        "ASP.NET Core",
+        "SQL Server",
+        "JavaScript",
+        "REST APIs"
       ],
       description:
-        "Creative collaboration platform that combines video conferencing and HD media streaming",
-      logo: EvercastLogo,
+        "Developed and maintained a comprehensive payroll management system handling multi-company operations, tax calculations, and regulatory compliance across Middle Eastern markets. Implemented automated workflows reducing payroll processing time by 50% and ensuring 100% compliance with local labor laws.",
+      logo: AmthalLogo,
       link: {
-        label: "evercast.us",
-        href: "https://www.evercast.us/",
+        label: "amthalgroup.com",
+        href: "https://www.amthalgroup.com",
       },
     },
     {
-      title: "Consultly",
+      title: "Integrated Inventory Management",
       techStack: [
-        "Side Project",
-        "TypeScript",
-        "Next.js",
-        "Vite",
-        "GraphQL",
-        "WebRTC",
+        "ASP.NET Core",
+        "SQL Server",
+        "JavaScript",
+        "React"
       ],
-      description: "A platform to build and grow your online business",
-      logo: ConsultlyLogo,
+      description:
+        "Built a scalable inventory management system featuring real-time tracking, automated reordering, and comprehensive reporting capabilities. Integrated seamlessly with existing ERP modules",
+      logo: AmthalLogo,
       link: {
-        label: "consultly.com",
-        href: "https://consultly.com/",
+        label: "amthalgroup.com",
+        href: "https://www.amthalgroup.com",
       },
     },
     {
-      title: "Monito",
-      techStack: ["Side Project", "TypeScript", "Next.js", "Browser Extension"],
+      title: "Microfinance Management System",
+      techStack: [
+        "ASP.NET",
+        "SQL Server",
+        "Entity Framework",
+        "REST APIs"
+      ],
       description:
-        "Browser extension that records everything happening in a web application",
-      logo: MonitoLogo,
+        "Developed a comprehensive microfinance system with advanced loan management, automated repayment scheduling, and customer portfolio tracking. Implemented sophisticated features including risk assessment algorithms, collateral management, and regulatory compliance reporting, compliance-related issues.",
+      logo: AmthalLogo,
       link: {
-        label: "monito.dev",
-        href: "https://monito.dev/",
+        label: "amthalgroup.com",
+        href: "https://www.amthalgroup.com",
       },
     },
     {
-      title: "Jarocki.me",
-      techStack: ["Side Project", "Next.js", "MDX"],
+      title: "Enterprise Trading & Sales Management",
+      techStack: [
+        "ASP.NET Core",
+        "SQL Server",
+        "SignalR",
+        "Web APIs",
+        "Angular",
+        "Redis"
+      ],
       description:
-        "Personal website and blog. Built with Next.js and Notion API",
-      logo: JarockiMeLogo,
+        "Architected a sophisticated trading and sales platform with dynamic contract management and advanced billing capabilities. Implemented key features including:" +
+        " Customizable contract templates with version control, formula-based pricing engine with real-time market data integration, automated billing cycles with multi-currency support, and comprehensive financial reporting.",
+      logo: AmthalLogo,
       link: {
-        label: "github.com",
-        href: "https://jarocki.me/",
+        label: "amthalgroup.com",
+        href: "https://www.amthalgroup.com",
       },
-    },
-    {
-      title: "Minimal",
-      techStack: ["Side Project", "Next.js", "Puppeteer"],
-      description:
-        "Minimalist calendars, habit trackers, and planners generator",
-      logo: Minimal,
-      link: {
-        label: "useminimal.com",
-        href: "https://useminimal.com/",
-      },
-    },
-    {
-      title: "Barepapers",
-      techStack: ["Side Project", "Next.js", "Puppeteer"],
-      description:
-        "Generates beautiful wallpapers using random shapes and gradients",
-      logo: BarepapersLogo,
-      link: {
-        label: "barepapers.com",
-        href: "https://barepapers.com/",
-      },
-    },
-    {
-      title: "Year progress",
-      techStack: ["Side Project", "TypeScript", "Next.js"],
-      description: "Tracks current year progress and displays a countdown",
-      logo: YearProgressLogo,
-      link: {
-        label: "getyearprogress.com",
-        href: "https://getyearprogress.com/",
-      },
-    },
-    {
-      title: "Mobile Vikings",
-      techStack: ["Lead Android Developer", "Android", "Kotlin"],
-      description:
-        "Android application for leading virtual mobile operator in Poland",
-      logo: MobileVikingsLogo,
-      link: {
-        label: "mobilevikings.pl",
-        href: "https://mobilevikings.pl/",
-      },
-    },
-    {
-      title: "Howdy",
-      techStack: ["Lead Android Developer", "Android", "Kotlin"],
-      description: "Howdy is a place for joining communities you care about",
-      logo: Howdy,
-      link: {
-        label: "play.google.com",
-        href: "https://howdy.co/",
-      },
-    },
-    {
-      title: "Tastycloud",
-      techStack: ["Lead Android Developer", "Android", "Kotlin"],
-      description:
-        "Android application for managing and displaying restaurant menus in kiosk mode",
-      logo: TastyCloudLogo,
-      link: {
-        label: "tastycloud.fr",
-        href: "https://www.tastycloud.fr/",
-      },
-    },
-    {
-      title: "Ambit",
-      techStack: ["Lead Android Developer", "Android", "Kotlin"],
-      description:
-        "Android application that helps with sharing your contact details",
-      logo: AmbitLogo,
-    },
-    {
-      title: "Bim",
-      techStack: ["Lead Android Developer", "Android", "Kotlin"],
-      description:
-        "Android application that helps with booking a table in a restaurants",
-      logo: BimLogo,
-    },
-    {
-      title: "Canal Digital GO",
-      techStack: ["Lead Android Developer", "Android", "Kotlin"],
-      description:
-        "Video streaming mobile application for Canal Digital subscribers",
-      logo: CDGOLogo,
-    },
+    }
   ],
 } as const;
