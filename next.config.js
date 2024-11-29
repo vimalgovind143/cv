@@ -3,11 +3,18 @@ const nextConfig = {
   output: 'export',
   images: {
     unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn2.mallats.com',
+        pathname: '**',
+      },
+    ],
   },
-  // Disable server-side features for static export
-  experimental: {
-    appDir: true
-  }
-}
+  // Modern optimizations
+  swcMinify: true,
+  reactStrictMode: true,
+  poweredByHeader: false,
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

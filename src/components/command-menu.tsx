@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import * as React from "react";
+import * as React from 'react';
 
 import {
   CommandDialog,
@@ -10,9 +10,9 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-} from "@/components/ui/command";
-import { Button } from "./ui/button";
-import { CommandIcon } from "lucide-react";
+} from '@/components/ui/command';
+import { Button } from './ui/button';
+import { CommandIcon } from 'lucide-react';
 
 interface Props {
   links: { url: string; title: string }[];
@@ -23,32 +23,33 @@ export const CommandMenu = ({ links }: Props) => {
 
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {
-      if (e.key === "j" && (e.metaKey || e.ctrlKey)) {
+      if (e.key === 'j' && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
         setOpen((open) => !open);
       }
     };
 
-    document.addEventListener("keydown", down);
-    return () => document.removeEventListener("keydown", down);
+    document.addEventListener('keydown', down);
+    return () => document.removeEventListener('keydown', down);
   }, []);
 
-  const isMac = typeof window !== 'undefined' ? navigator.platform.toUpperCase().indexOf('MAC') >= 0 : false;
+  const isMac =
+    typeof window !== 'undefined' ? navigator.platform.toUpperCase().indexOf('MAC') >= 0 : false;
 
   return (
     <>
-      <p className="fixed bottom-0 left-0 right-0 hidden border-t border-t-muted bg-white p-1 text-center text-sm text-muted-foreground print:hidden xl:block">
-        Press{" "}
+      <p className="fixed bottom-0 left-0 right-0 hidden border-t border-t-muted bg-white p-1 text-center text-sm text-muted-foreground xl:block print:hidden">
+        Press{' '}
         <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
-          <span className="text-xs">{isMac ? "⌘" : "Ctrl"}</span>J
-        </kbd>{" "}
+          <span className="text-xs">{isMac ? '⌘' : 'Ctrl'}</span>J
+        </kbd>{' '}
         to open the command menu
       </p>
       <Button
         onClick={() => setOpen((open) => !open)}
         variant="outline"
         size="icon"
-        className="fixed bottom-4 right-4 flex rounded-full shadow-2xl print:hidden xl:hidden"
+        className="fixed bottom-4 right-4 flex rounded-full shadow-2xl xl:hidden print:hidden"
       >
         <CommandIcon className="my-6 size-6" />
       </Button>
@@ -72,7 +73,7 @@ export const CommandMenu = ({ links }: Props) => {
                 key={url}
                 onSelect={() => {
                   setOpen(false);
-                  window.open(url, "_blank");
+                  window.open(url, '_blank');
                 }}
               >
                 <span>{title}</span>

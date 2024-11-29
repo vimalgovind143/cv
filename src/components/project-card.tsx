@@ -1,11 +1,5 @@
-import {
-  Card,
-  CardHeader,
-  CardContent,
-  CardDescription,
-  CardTitle,
-} from "./ui/card";
-import { Badge } from "./ui/badge";
+import { Card, CardHeader, CardContent, CardDescription, CardTitle } from './ui/card';
+import { Badge } from './ui/badge';
 
 interface Props {
   title: string;
@@ -24,17 +18,17 @@ export function ProjectCard({ title, description, tags, link }: Props) {
               <a
                 href={link}
                 target="_blank"
+                rel="noreferrer"
                 className="inline-flex items-center gap-1 hover:underline"
               >
-                {title}{" "}
-                <span className="size-1 rounded-full bg-green-500"></span>
+                {title} <span className="size-1 rounded-full bg-green-500"></span>
               </a>
             ) : (
               title
             )}
           </CardTitle>
           <div className="hidden font-mono text-xs underline print:visible">
-            {link?.replace("https://", "").replace("www.", "").replace("/", "")}
+            {link?.replace('https://', '').replace('www.', '').replace('/', '')}
           </div>
           <CardDescription className="font-mono text-xs print:text-[10px]">
             {description}
