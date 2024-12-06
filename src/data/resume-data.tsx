@@ -63,8 +63,8 @@ export const RESUME_DATA = {
       end: 'Current',
       description:
         'Lead the software support division, managing critical enterprise applications and driving system improvements. Key achievements include:' +
-        ' Successfully migrated legacy systems to modern cloud infrastructure, implemented automated deployment processes, and reduced support response time by 40%.' +
-        ' Expert in enterprise solutions including payroll, accounting, sales, and inventory management systems.',
+        ' Successfully migrated legacy systems to modern cloud infrastructure, implemented automated deployment processes, and reduced support and bugs.' +
+        ' Expert in enterprise solutions including formulat based payroll, accounting, sales, microfinance, and inventory management systems.',
     },
     {
       company: 'Al Amthal Group BSC Closed, Manama Bahrain',
@@ -76,7 +76,7 @@ export const RESUME_DATA = {
       end: 2016,
       description:
         'Spearheaded ERP software development initiatives, focusing on new feature development and system architecture. Notable contributions include:' +
-        ' Designed and implemented core modules for payroll and accounting systems, resulting in 30% improved processing efficiency.' +
+        ' Designed and implemented core modules for payroll and accounting systems, resulting improved processing efficiency.' +
         ' Led the development of integrated inventory management solutions for enterprise clients.',
     },
     {
@@ -112,6 +112,7 @@ export const RESUME_DATA = {
     'Web APIs',
     'REST APIs',
     'Git',
+    "ML/LLMs"
   ],
   projects: [
     {
