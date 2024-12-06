@@ -2,7 +2,7 @@ import { AmthalLogo } from '@/images/logos';
 import { GitHubIcon, LinkedInIcon, XIcon, IGIcon } from '@/components/icons';
 
 export const RESUME_DATA = {
-  name: 'Vimal Govind Markkasseri',
+  name: 'Mr Vimal Govind Markkasseri',
   initials: 'Mr.',
   location: 'Manama, Bahrain GMT+3',
   locationLink: 'https://www.google.com/maps/place/bahrain',
@@ -78,6 +78,17 @@ export const RESUME_DATA = {
         'Spearheaded ERP software development initiatives, focusing on new feature development and system architecture. Notable contributions include:' +
         ' Designed and implemented core modules for payroll and accounting systems, resulting in 30% improved processing efficiency.' +
         ' Led the development of integrated inventory management solutions for enterprise clients.',
+    },
+    {
+      company: 'Al Amthal Group BSC Closed, Manama Bahrain',
+      link: 'https://amthalgroup.com',
+      badges: ['Full-Time'],
+      title: 'Software Engineer',
+      logo: AmthalLogo,
+      start: '2008',
+      end: 2012,
+      description:
+        'Core team member responsible for developing the supporting the ERP Modules',
     },
   ],
   skills: [
