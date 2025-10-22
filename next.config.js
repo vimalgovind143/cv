@@ -12,7 +12,6 @@ const nextConfig = {
     ],
   },
   // Modern optimizations
-  swcMinify: true,
   reactStrictMode: true,
   poweredByHeader: false,
 };

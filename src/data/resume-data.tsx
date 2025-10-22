@@ -7,9 +7,9 @@ export const RESUME_DATA = {
   location: 'Manama, Bahrain GMT+3',
   locationLink: 'https://www.google.com/maps/place/bahrain',
   about:
-    'Senior Full Stack Engineer specializing in enterprise software development and technical leadership.',
+    'Senior Full Stack Engineer specializing in enterprise software development, AI integration, and technical leadership.',
   summary:
-    'A seasoned Full Stack Engineer with over 16 years of experience in architecting and delivering enterprise-level ERP solutions. My core expertise encompasses .NET Core, SQL, and modern web technologies including React and Angular. I excel in leading development teams and implementing complex business solutions, with particular focus on ERP systems for financial management, payroll, and inventory control. My approach combines technical excellence with a strong emphasis on delivering measurable business value.',
+    'A seasoned Full Stack Engineer with over 16 years of experience in architecting and delivering enterprise-level ERP solutions, now specializing in AI integration and intelligent automation. My core expertise encompasses .NET Core, SQL, modern web technologies including React and Angular, and cutting-edge AI technologies. I excel in leading development teams, implementing complex business solutions with AI-powered features, and integrating various AI models and agents into enterprise systems. My approach combines technical excellence with AI innovation to deliver measurable business value through intelligent automation and data-driven insights.',
   avatarUrl: 'https://cdn2.mallats.com/AmthalGroup/img/team/Vimal.jpg',
   personalWebsiteUrl: 'https://hellovg.win',
   contact: {
@@ -112,9 +112,56 @@ export const RESUME_DATA = {
     'Web APIs',
     'REST APIs',
     'Git',
-    "ML/LLMs"
+    'ML/LLMs',
+    'AI Agents',
+    'OpenAI API',
+    'Claude API',
+    'Gemini API',
+    'LangChain',
+    'AI Model Integration',
+    'Prompt Engineering',
+    'RAG (Retrieval Augmented Generation)',
+    'Vector Databases',
+    'AI Automation',
+    'Conversational AI',
+    'AI-Powered Analytics',
+    'Machine Learning Operations',
+    'AI Agent Orchestration'
   ],
   projects: [
+    {
+      title: 'AI-Powered ERP Assistant',
+      techStack: ['OpenAI API', 'LangChain', '.NET Core', 'RAG', 'Vector Database'],
+      description:
+        'Developed an intelligent ERP assistant that leverages multiple AI models (GPT-4, Claude, Gemini) to provide natural language querying of business data, automated report generation, and intelligent insights. Implemented RAG architecture for context-aware responses and integrated with existing ERP modules for seamless user experience.',
+      logo: AmthalLogo,
+      link: {
+        label: 'AI ERP Assistant',
+        href: 'https://www.amthalgroup.com',
+      },
+    },
+    {
+      title: 'Multi-Agent Business Automation System',
+      techStack: ['AI Agents', 'OpenAI API', 'Claude API', 'LangChain', 'Python', '.NET Core'],
+      description:
+        'Architected and deployed a sophisticated multi-agent system for business process automation. Created specialized agents for invoice processing, customer support, and data analysis. Implemented agent orchestration with fallback mechanisms and direct API communication with various AI models for optimal performance and cost efficiency.',
+      logo: AmthalLogo,
+      link: {
+        label: 'Business Automation',
+        href: 'https://www.amthalgroup.com',
+      },
+    },
+    {
+      title: 'Intelligent Document Processing Pipeline',
+      techStack: ['Computer Vision', 'OCR', 'OpenAI API', 'Azure Cognitive Services', '.NET Core'],
+      description:
+        'Built an end-to-end document processing system that automatically extracts, categorizes, and processes business documents using AI. Integrated multiple AI models for document classification, data extraction, and validation. Reduced manual document processing time by 85% while maintaining 99% accuracy.',
+      logo: AmthalLogo,
+      link: {
+        label: 'Document AI',
+        href: 'https://www.amthalgroup.com',
+      },
+    },
     {
       title: 'Migration to .NET Core',
       techStack: ['ASP.NET Core', 'EF Core', 'REST APIs', 'Clean Architecture'],
