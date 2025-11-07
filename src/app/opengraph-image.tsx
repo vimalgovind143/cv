@@ -2,6 +2,7 @@ import { ImageResponse } from "next/og";
 import { RESUME_DATA } from "../data/resume-data";
 
 export const runtime = "edge";
+export const dynamic = "force-static";
 
 export const alt = "Minimalist Resume";
 export const size = {
