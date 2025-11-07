@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import {
   CommandDialog,
@@ -41,6 +41,11 @@ export const CommandMenu = ({ links }: Props) => {
     );
   }, []);
 
+  const handleLinkClick = (url: string) => {
+    setOpen(false);
+    window.open(url, '_blank');
+  };
+
   return (
     <>
       <p className="fixed bottom-0 left-0 right-0 hidden border-t border-t-muted bg-white p-1 text-center text-sm text-muted-foreground xl:block print:hidden">
@@ -74,15 +79,20 @@ export const CommandMenu = ({ links }: Props) => {
           </CommandGroup>
           <CommandGroup heading="Links">
             {links.map(({ url, title }) => (
-              <CommandItem
+              <div
                 key={url}
-                onSelect={() => {
-                  setOpen(false);
-                  window.open(url, '_blank');
+                onClick={() => handleLinkClick(url)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    handleLinkClick(url);
+                  }
                 }}
+                role="button"
+                tabIndex={0}
+                className="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none hover:bg-accent hover:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
               >
-                <span>{title}</span>
-              </CommandItem>
+                <span className="text-foreground">{title}</span>
+              </div>
             ))}
           </CommandGroup>
           <CommandSeparator />
