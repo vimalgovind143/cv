@@ -1,236 +1,222 @@
-import type { ResumeData } from "@/lib/types";
+import { AmthalLogo } from '@/images/logos';
+import { GitHubIcon, LinkedInIcon, XIcon, IGIcon } from '@/components/icons';
 
-export const RESUME_DATA: ResumeData = {
-  name: "Bartosz Jarocki",
-  initials: "BJ",
-  location: "Wrocław, Poland, CET",
-  locationLink: "https://www.google.com/maps/place/Wrocław",
-  about: "Full Stack Engineer dedicated to building high-quality products.",
-  summary: (
-    <>
-      Full Stack Engineer specializing in high-performance React applications,
-      scalable Node.js services, and real-time collaboration systems.
-      Experienced in technical architecture design and remote team leadership.
-    </>
-  ),
-  avatarUrl: "https://avatars.githubusercontent.com/u/1017620?v=4",
-  personalWebsiteUrl: "https://jarocki.me",
+export const RESUME_DATA = {
+  name: 'Mr Vimal Govind Markkasseri',
+  initials: 'Mr.',
+  location: 'Manama, Bahrain GMT+3',
+  locationLink: 'https://www.google.com/maps/place/bahrain',
+  about:
+    'Senior Full Stack Engineer specializing in enterprise software development, AI integration, and technical leadership.',
+  summary:
+    'A seasoned Full Stack Engineer with over 16 years of experience in architecting and delivering enterprise-level ERP solutions, now specializing in AI integration and intelligent automation. My core expertise encompasses .NET Core, SQL, modern web technologies including React and Angular, and cutting-edge AI technologies. I excel in leading development teams, implementing complex business solutions with AI-powered features, and integrating various AI models and agents into enterprise systems. My approach combines technical excellence with AI innovation to deliver measurable business value through intelligent automation and data-driven insights.',
+  avatarUrl: 'https://cdn2.mallats.com/AmthalGroup/img/team/Vimal.jpg',
+  personalWebsiteUrl: 'https://hellovg.win',
   contact: {
-    email: "bartosz.jarocki@hey.com",
-    tel: "+48530213401",
+    email: 'hey@hellovg.win',
+    tel: '+973364AB541',
     social: [
       {
-        name: "GitHub",
-        url: "https://github.com/BartoszJarocki",
-        icon: "github",
+        name: 'GitHub',
+        url: 'https://github.com/vimalgovind143',
+        icon: GitHubIcon,
       },
       {
-        name: "LinkedIn",
-        url: "https://www.linkedin.com/in/bjarocki/",
-        icon: "linkedin",
+        name: 'LinkedIn',
+        url: 'https://www.linkedin.com/in/vimalgovind/',
+        icon: LinkedInIcon,
       },
       {
-        name: "X",
-        url: "https://x.com/BartoszJarocki",
-        icon: "x",
+        name: 'X',
+        url: 'https://x.com/vimalgovind',
+        icon: XIcon,
+      },
+      {
+        name: 'Instagram',
+        url: 'https://instagram.com/vimalgovind',
+        icon: IGIcon,
       },
     ],
   },
   education: [
     {
-      school: "Wrocław University of Technology",
-      degree: "Bachelor's Degree in Control systems engineering and Robotics",
-      start: "2007",
-      end: "2010",
+      school: 'NIIT, Bengaluru, India',
+      degree: 'Diploma in Software Engineering',
+      start: '2007',
+      end: '2008',
+    },
+    {
+      school: 'MEA Engineering College, Kerala, India',
+      degree: "Bachelor's Degree in Information Technology",
+      start: '2003',
+      end: '2007',
     },
   ],
   work: [
     {
-      company: "Motion",
-      link: "https://motionapp.com/",
-      badges: ["Remote", "AI", "React", "Next.js", "TypeScript", "AdonisJS"],
-      title: "Senior Software Engineer",
-      start: "2025",
-      end: null,
-      description: (
-        <>
-          Working on internal AI agents platform allowing marketing specialists
-          to create AI workflows.
-        </>
-      ),
-    },
-    {
-      company: "Film.io",
-      link: "https://film.io",
-      badges: ["Remote", "React", "Next.js", "TypeScript", "Node.js"],
-      title: "Software Architect",
-      start: "2024",
-      end: "2025",
-      description: (
-        <>
-          Leading technical architecture of a blockchain-based film funding
-          platform.
-          <ul className="list-inside list-disc">
-            <li>
-              Architecting migration from CRA to Next.js for improved
-              performance, SEO, and DX
-            </li>
-            <li>
-              Established release process enabling faster deployments and
-              reliable rollbacks
-            </li>
-            <li>
-              Implementing system-wide monitoring and security improvements
-            </li>
-          </ul>
-        </>
-      ),
-    },
-    {
-      company: "Parabol",
-      link: "https://parabol.co",
-      badges: [
-        "Remote",
-        "React",
-        "TypeScript",
-        "Node.js",
-        "GraphQL",
-        "Tailwind CSS",
-      ],
-      title: "Senior Full Stack Developer",
-      start: "2021",
-      end: "2024",
-      description: (
-        <>
-          Senior developer and squad leader for an enterprise agile meeting
-          platform.
-          <ul className="list-inside list-disc">
-            <li>
-              Built design system with Tailwind CSS, improving development speed
-              and time to market
-            </li>
-            <li>
-              Implemented engineering practices: PR automation, code review
-              guidelines, and workflows
-            </li>
-            <li>
-              Open source contributions to Relay DevTools and React i18n tooling
-            </li>
-          </ul>
-        </>
-      ),
-    },
-    {
-      company: "Clevertech",
-      link: "https://clevertech.biz",
-      badges: ["Remote", "React", "TypeScript", "Node.js", "Android", "Kotlin"],
-      title: "Lead Android Developer → Full Stack Developer",
-      start: "2015",
-      end: "2021",
-      description: (
-        <>
-          Successfully transitioned from mobile to full-stack development while
-          leading distributed teams.
-          <ul className="list-inside list-disc">
-            <li>
-              Led frontend team at Evercast, building real-time platform
-              supporting 30+ users per room with HD streaming and collaboration
-              tools
-            </li>
-            <li>
-              Developed offline-first Android app for DKMS, improving donor
-              registration process
-            </li>
-            <li>
-              Led development teams across multiple successful client projects
-            </li>
-          </ul>
-        </>
-      ),
-    },
-    {
-      company: "Jojo Mobile",
-      link: "https://bsgroup.eu/",
-      badges: ["On Site", "Android", "Java", "Kotlin"],
-      title: "Android Developer → Lead Android Developer",
-      start: "2012",
-      end: "2015",
-      description: (
-        <>
-          First Android developer, grew and led a team of 15+ engineers while
-          establishing engineering culture.
-          <ul className="list-inside list-disc">
-            <li>
-              Developed apps for major Polish companies including LOT, Polskie
-              Radio, and Agora
-            </li>
-            <li>Built and mentored high-performing mobile development team</li>
-          </ul>
-        </>
-      ),
-    },
-    {
-      company: "Nokia Siemens Networks",
-      link: "https://www.nokia.com",
-      badges: ["On Site", "C/C++", "LTE", "Agile"],
-      title: "C/C++ Developer",
-      start: "2010",
-      end: "2012",
+      company: 'Al Amthal Group BSC Closed, Manama Bahrain',
+      link: 'https://amthalgroup.com',
+      badges: ['Full-Time'],
+      title: 'Support Manager',
+      logo: AmthalLogo,
+      start: '2016',
+      end: 'Current',
       description:
-        "Developed software for LTE base stations at enterprise scale, gaining strong fundamentals in software architecture, testing practices, and cross-team collaboration.",
+        'Lead the software support division, managing critical enterprise applications and driving system improvements. Key achievements include:' +
+        ' Successfully migrated legacy systems to modern cloud infrastructure, implemented automated deployment processes, and reduced support and bugs.' +
+        ' Expert in enterprise solutions including formulat based payroll, accounting, sales, microfinance, and inventory management systems.',
+    },
+    {
+      company: 'Al Amthal Group BSC Closed, Manama Bahrain',
+      link: 'https://amthalgroup.com',
+      badges: ['Full-Time'],
+      title: 'Senior Software Engineer',
+      logo: AmthalLogo,
+      start: '2012',
+      end: 2016,
+      description:
+        'Spearheaded ERP software development initiatives, focusing on new feature development and system architecture. Notable contributions include:' +
+        ' Designed and implemented core modules for payroll and accounting systems, resulting improved processing efficiency.' +
+        ' Led the development of integrated inventory management solutions for enterprise clients.',
+    },
+    {
+      company: 'Al Amthal Group BSC Closed, Manama Bahrain',
+      link: 'https://amthalgroup.com',
+      badges: ['Full-Time'],
+      title: 'Software Engineer',
+      logo: AmthalLogo,
+      start: '2008',
+      end: 2012,
+      description:
+        'Core team member responsible for developing the supporting the ERP Modules',
     },
   ],
   skills: [
-    "React/Next.js/Remix",
-    "TypeScript",
-    "Tailwind CSS",
-    "Design Systems",
-    "WebRTC",
-    "WebSockets",
-    "Node.js",
-    "GraphQL",
-    "Relay",
-    "System Architecture",
-    "Remote Team Leadership",
+    '.NET Core',
+    'asp.net',
+    'SQL/MSSQL',
+    'html/css',
+    'angular',
+    'react',
+    'ERP',
+    'Accounting',
+    'Api',
+    'Microservices',
+    'Clean Architecture',
+    'Docker',
+    'Kubernetes',
+    'Azure',
+    'SQL Server',
+    'Entity Framework Core',
+    'SignalR',
+    'Web APIs',
+    'REST APIs',
+    'Git',
+    'ML/LLMs',
+    'AI Agents',
+    'OpenAI API',
+    'Claude API',
+    'Gemini API',
+    'LangChain',
+    'AI Model Integration',
+    'Prompt Engineering',
+    'RAG (Retrieval Augmented Generation)',
+    'Vector Databases',
+    'AI Automation',
+    'Conversational AI',
+    'AI-Powered Analytics',
+    'Machine Learning Operations',
+    'AI Agent Orchestration'
   ],
   projects: [
     {
-      title: "Monito",
-      techStack: ["TypeScript", "Next.js", "Browser Extension", "PostgreSQL"],
+      title: 'AI-Powered ERP Assistant',
+      techStack: ['OpenAI API', 'LangChain', '.NET Core', 'RAG', 'Vector Database'],
       description:
-        "Browser extension for debugging web applications. Includes taking screenshots, screen recording, E2E tests generation and generating bug reports",
+        'Developed an intelligent ERP assistant that leverages multiple AI models (GPT-4, Claude, Gemini) to provide natural language querying of business data, automated report generation, and intelligent insights. Implemented RAG architecture for context-aware responses and integrated with existing ERP modules for seamless user experience.',
+      logo: AmthalLogo,
       link: {
-        label: "monito.dev",
-        href: "https://monito.dev/",
+        label: 'AI ERP Assistant',
+        href: 'https://www.amthalgroup.com',
       },
     },
     {
-      title: "Consultly",
-      techStack: [
-        "TypeScript",
-        "Next.js",
-        "Vite",
-        "GraphQL",
-        "WebRTC",
-        "Tailwind CSS",
-        "PostgreSQL",
-        "Redis",
-      ],
+      title: 'Multi-Agent Business Automation System',
+      techStack: ['AI Agents', 'OpenAI API', 'Claude API', 'LangChain', 'Python', '.NET Core'],
       description:
-        "Platform for online consultations with real-time video meetings and scheduling",
+        'Architected and deployed a sophisticated multi-agent system for business process automation. Created specialized agents for invoice processing, customer support, and data analysis. Implemented agent orchestration with fallback mechanisms and direct API communication with various AI models for optimal performance and cost efficiency.',
+      logo: AmthalLogo,
       link: {
-        label: "consultly.com",
-        href: "https://consultly.com/",
+        label: 'Business Automation',
+        href: 'https://www.amthalgroup.com',
       },
     },
     {
-      title: "Minimalist CV",
-      techStack: ["TypeScript", "Next.js", "Tailwind CSS"],
+      title: 'Intelligent Document Processing Pipeline',
+      techStack: ['Computer Vision', 'OCR', 'OpenAI API', 'Azure Cognitive Services', '.NET Core'],
       description:
-        "An open source minimalist, print friendly CV template with a focus on readability and clean design. >9k stars on GitHub",
+        'Built an end-to-end document processing system that automatically extracts, categorizes, and processes business documents using AI. Integrated multiple AI models for document classification, data extraction, and validation. Reduced manual document processing time by 85% while maintaining 99% accuracy.',
+      logo: AmthalLogo,
       link: {
-        label: "Minimalist CV",
-        href: "https://github.com/BartoszJarocki/cv",
+        label: 'Document AI',
+        href: 'https://www.amthalgroup.com',
+      },
+    },
+    {
+      title: 'Migration to .NET Core',
+      techStack: ['ASP.NET Core', 'EF Core', 'REST APIs', 'Clean Architecture'],
+      description:
+        'Led the modernization of legacy ERP systems to .NET Core, implementing Clean Architecture principles. Key achievements include:' +
+        ' Successfully designed and implemented a scalable microservices architecture, improved system performance by 60%, and reduced deployment time by 75%.',
+      logo: AmthalLogo,
+      link: {
+        label: 'amthalgroup.com',
+        href: 'https://www.amthalgroup.com',
+      },
+    },
+    {
+      title: 'Enterprise Payroll System',
+      techStack: ['ASP.NET Core', 'SQL Server', 'JavaScript', 'REST APIs'],
+      description:
+        'Developed and maintained a comprehensive payroll management system handling multi-company operations, tax calculations, and regulatory compliance across Middle Eastern markets. Implemented automated workflows reducing payroll processing time by 50% and ensuring 100% compliance with local labor laws.',
+      logo: AmthalLogo,
+      link: {
+        label: 'amthalgroup.com',
+        href: 'https://www.amthalgroup.com',
+      },
+    },
+    {
+      title: 'Integrated Inventory Management',
+      techStack: ['ASP.NET Core', 'SQL Server', 'JavaScript', 'React'],
+      description:
+        'Built a scalable inventory management system featuring real-time tracking, automated reordering, and comprehensive reporting capabilities. Integrated seamlessly with existing ERP modules',
+      logo: AmthalLogo,
+      link: {
+        label: 'amthalgroup.com',
+        href: 'https://www.amthalgroup.com',
+      },
+    },
+    {
+      title: 'Microfinance Management System',
+      techStack: ['ASP.NET', 'SQL Server', 'Entity Framework', 'REST APIs'],
+      description:
+        'Developed a comprehensive microfinance system with advanced loan management, automated repayment scheduling, and customer portfolio tracking. Implemented sophisticated features including risk assessment algorithms, collateral management, and regulatory compliance reporting, compliance-related issues.',
+      logo: AmthalLogo,
+      link: {
+        label: 'amthalgroup.com',
+        href: 'https://www.amthalgroup.com',
+      },
+    },
+    {
+      title: 'Enterprise Trading & Sales Management',
+      techStack: ['ASP.NET Core', 'SQL Server', 'SignalR', 'Web APIs', 'Angular', 'Redis'],
+      description:
+        'Architected a sophisticated trading and sales platform with dynamic contract management and advanced billing capabilities. Implemented key features including:' +
+        ' Customizable contract templates with version control, formula-based pricing engine with real-time market data integration, automated billing cycles with multi-currency support, and comprehensive financial reporting.',
+      logo: AmthalLogo,
+      link: {
+        label: 'amthalgroup.com',
+        href: 'https://www.amthalgroup.com',
       },
     },
   ],

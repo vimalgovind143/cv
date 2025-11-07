@@ -1,4 +1,6 @@
-FROM node:22.2.0-slim as BUILD_STAGE
+# Use the official lightweight Node.js 18 image.
+# https://hub.docker.com/_/node
+FROM node:20-slim
 
 WORKDIR /app
 

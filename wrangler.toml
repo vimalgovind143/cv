@@ -1,0 +1,9 @@
+name = "cv"
+compatibility_date = "2024-01-01"
+
+# Configuration for Cloudflare Pages
+[build]
+command = "npm run build"
+
+# Specify the directory containing your static assets
+pages_build_output_dir = "out"

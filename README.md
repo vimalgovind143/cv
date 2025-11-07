@@ -1,4 +1,4 @@
-![cv](https://github.com/BartoszJarocki/cv/assets/1017620/79bdb9fc-0b20-4d2c-aafe-0526ad4a71d2)
+![cv](https://raw.githubusercontent.com/vimalgovind143/cv/main/Capture.JPG)
 
 # Minimalist CV
 
@@ -139,12 +139,8 @@ docker compose down
 
 ### Using Docker directly
 
-```bash
-# Build the image
-docker build -t cv-app .
-
-# Run the container
-docker run -p 3000:3000 cv-app
+```
+docker compose down
 ```
 
 ## 🔧 Configuration
