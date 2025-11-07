@@ -1,6 +1,6 @@
 'use client';
 
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import {
   CommandDialog,
@@ -20,10 +20,6 @@ interface Props {
 
 export const CommandMenu = ({ links }: Props) => {
   const [open, setOpen] = React.useState(false);
-  const isMac: boolean =
-    typeof window !== "undefined"
-      ? window.navigator.userAgent.indexOf("Mac") > -1
-      : false;
 
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -37,8 +33,13 @@ export const CommandMenu = ({ links }: Props) => {
     return () => document.removeEventListener('keydown', down);
   }, []);
 
-  const isMac =
-    typeof window !== 'undefined' ? navigator.platform.toUpperCase().indexOf('MAC') >= 0 : false;
+  const [isMac, setIsMac] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsMac(
+      typeof window !== 'undefined' ? navigator.platform.toUpperCase().indexOf('MAC') >= 0 : false
+    );
+  }, []);
 
   return (
     <>
