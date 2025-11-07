@@ -2,21 +2,31 @@
 # https://hub.docker.com/_/node
 FROM node:20-slim
 
-# Create and change to the app directory.
-WORKDIR /usr/src/app
+WORKDIR /app
 
-# Copy application dependency manifests to the container image.
-# A wildcard is used to ensure both package.json AND package-lock.json are copied.
-COPY package*.json ./
+# Install pnpm
+RUN npm install -g pnpm@8
 
-# Install all dependencies.
-RUN npm install
+COPY package.json pnpm-lock.yaml ./
 
-# Copy local code to the container image.
+RUN pnpm install --frozen-lockfile
+
 COPY . .
 
-# Build the app
-RUN npm run build
+RUN pnpm build
 
-# Run the web service on container startup.
-CMD [ "npm", "start" ]
+FROM node:alpine
+
+WORKDIR /app
+
+# Install pnpm in production stage
+RUN npm install -g pnpm@8
+
+COPY --from=BUILD_STAGE /app/package.json ./package.json
+COPY --from=BUILD_STAGE /app/node_modules ./node_modules
+COPY --from=BUILD_STAGE /app/.next ./.next
+COPY --from=BUILD_STAGE /app/public ./public
+
+EXPOSE 3000
+
+CMD ["pnpm", "start"]

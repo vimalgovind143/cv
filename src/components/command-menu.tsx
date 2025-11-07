@@ -1,6 +1,6 @@
 'use client';
 
-import * as React from 'react';
+import React from 'react';
 
 import {
   CommandDialog,
@@ -33,8 +33,18 @@ export const CommandMenu = ({ links }: Props) => {
     return () => document.removeEventListener('keydown', down);
   }, []);
 
-  const isMac =
-    typeof window !== 'undefined' ? navigator.platform.toUpperCase().indexOf('MAC') >= 0 : false;
+  const [isMac, setIsMac] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsMac(
+      typeof window !== 'undefined' ? navigator.platform.toUpperCase().indexOf('MAC') >= 0 : false
+    );
+  }, []);
+
+  const handleLinkClick = (url: string) => {
+    setOpen(false);
+    window.open(url, '_blank');
+  };
 
   return (
     <>
@@ -69,15 +79,20 @@ export const CommandMenu = ({ links }: Props) => {
           </CommandGroup>
           <CommandGroup heading="Links">
             {links.map(({ url, title }) => (
-              <CommandItem
+              <div
                 key={url}
-                onSelect={() => {
-                  setOpen(false);
-                  window.open(url, '_blank');
+                onClick={() => handleLinkClick(url)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    handleLinkClick(url);
+                  }
                 }}
+                role="button"
+                tabIndex={0}
+                className="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none hover:bg-accent hover:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
               >
-                <span>{title}</span>
-              </CommandItem>
+                <span className="text-foreground">{title}</span>
+              </div>
             ))}
           </CommandGroup>
           <CommandSeparator />

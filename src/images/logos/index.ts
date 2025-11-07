@@ -1,5 +1,3 @@
-import ConsultlyLogo from './consultly.svg';
-import ParabolLogo from './parabol.svg';
-import AmthalLogo from './amthal.svg';
-
-export { ConsultlyLogo, ParabolLogo, AmthalLogo };
+export const ConsultlyLogo = { src: '/images/logos/consultly.svg' };
+export const ParabolLogo = { src: '/images/logos/parabol.svg' };
+export const AmthalLogo = { src: '/images/logos/amthal.svg' };
