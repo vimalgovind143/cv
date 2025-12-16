@@ -7,9 +7,9 @@ export const RESUME_DATA = {
   location: 'Manama, Bahrain GMT+3',
   locationLink: 'https://www.google.com/maps/place/bahrain',
   about:
-    'Senior Full Stack Engineer specializing in enterprise software architecture, system modernization, and technical leadership with emerging technology integration.',
+    'Senior Full Stack Engineer focused on building reliable enterprise systems, modernizing legacy platforms, and enabling teams to ship maintainable software—while staying curious about applied AI.',
   summary:
-    'A seasoned Full Stack Engineer with over 16 years of experience architecting and delivering enterprise-level ERP solutions. My expertise spans .NET Core, SQL, modern web technologies (React, Angular), and cloud infrastructure. I excel in designing scalable systems, leading cross-functional development teams, and modernizing legacy applications while integrating emerging technologies strategically. My approach combines solid engineering principles with innovative problem-solving to deliver robust, maintainable solutions that drive measurable business value.',
+    'Full Stack Engineer with 16+ years of experience delivering enterprise ERP solutions end-to-end. My work spans .NET/Core, SQL, modern web technologies, and cloud infrastructure, with a focus on clarity, reliability, and long-term maintainability. I enjoy partnering with cross-functional teams to modernize legacy systems, improve performance, and simplify complex business workflows. Lately, I’ve been especially interested in practical ways to apply AI/ML to real products—enhancing automation, insights, and user experience without overcomplicating the solution.',
   avatarUrl: 'https://cdn2.mallats.com/AmthalGroup/img/team/Vimal.jpg',
   personalWebsiteUrl: 'https://hellovg.win',
   contact: {
@@ -127,13 +127,14 @@ export const RESUME_DATA = {
     'Business Process Analysis',
     'Performance Optimization',
     'Emerging Technologies',
+    'Artificial Intelligence (AI)',
     'Machine Learning Fundamentals',
     'Data Analysis',
   ],
   projects: [
     {
       title: 'Enterprise Payroll System',
-      techStack: ['ASP.NET Core', 'SQL Server', 'Entity Framework', 'React', 'REST APIs'],
+      techStack: ['ASP.NET Core', 'SQL Server', 'Entity Framework', 'REST APIs'],
       description:
         'Developed and maintained a comprehensive payroll management system handling multi-company operations with complex tax calculations and statutory compliance. Implemented formula-based salary computation engine supporting various compensation structures, allowances, deductions, and regulatory requirements across Middle Eastern markets. Automated payroll cycles reduced processing time by 50% while maintaining 100% compliance with local labor laws and tax regulations.',
       logo: AmthalLogo,
@@ -155,7 +156,7 @@ export const RESUME_DATA = {
     },
     {
       title: 'Inventory Management Platform',
-      techStack: ['ASP.NET Core', 'SQL Server', 'React', 'SignalR', 'REST APIs'],
+      techStack: ['ASP.NET Core', 'SQL Server', 'REST APIs'],
       description:
         'Built a scalable inventory management system featuring real-time stock tracking across multiple warehouses, automated reordering with safety stock calculations, and comprehensive inventory reporting. Implemented demand forecasting algorithms to optimize stock levels and reduce carrying costs. Real-time synchronization ensures accurate inventory visibility across all business units.',
       logo: AmthalLogo,
@@ -177,7 +178,7 @@ export const RESUME_DATA = {
     },
     {
       title: 'Enterprise Trading & Sales Management Platform',
-      techStack: ['ASP.NET Core', 'SQL Server', 'SignalR', 'Angular', 'Redis', 'Web APIs'],
+      techStack: ['ASP.NET Core', 'SQL Server', 'Angular', 'Redis', 'Web APIs'],
       description:
         'Architected a sophisticated trading and sales platform with dynamic contract management, formula-based pricing engines, and advanced billing capabilities. Implemented customizable contract templates with version control, real-time market data integration, multi-currency support, and automated billing cycles. The system provides comprehensive financial reporting and settlement management for complex trade transactions.',
       logo: AmthalLogo,
@@ -217,7 +218,7 @@ export const RESUME_DATA = {
     },
     {
       title: 'Real-Time Analytics & Reporting Dashboard',
-      techStack: ['ASP.NET Core', 'SQL Server', 'React', 'SignalR', 'Data Analytics'],
+      techStack: ['ASP.NET Core', 'SQL Server', 'Data Analytics'],
       description:
         'Developed a comprehensive business intelligence platform providing real-time dashboards, executive reporting, and operational analytics. Implemented efficient data aggregation pipelines, interactive visualizations, and ad-hoc reporting capabilities. The system enables data-driven decision-making with performance metrics, trend analysis, and business KPI tracking.',
       logo: AmthalLogo,

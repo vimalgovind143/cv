@@ -80,7 +80,7 @@ export default function ResumePage() {
         </div>
 
         <section
-          className="mx-auto w-full max-w-2xl space-y-8 rounded-2xl border border-border bg-card p-6 text-card-foreground shadow-sm print:space-y-4 print:border-0 print:p-0 print:shadow-none md:p-10"
+          className="paper mx-auto w-full max-w-2xl space-y-8 rounded-2xl border border-border bg-card p-6 text-card-foreground shadow-sm print:space-y-4 print:border-0 print:p-0 print:shadow-none md:p-10"
           aria-label="Resume Content"
         >
           <SectionErrorBoundary sectionName="Header">
