@@ -26,9 +26,9 @@ const ProjectCard = memo(({ project, onClick }: { project: Project; onClick: () 
         loading="lazy"
       />
     )}
-    <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/60 to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+    <div className="absolute inset-0 flex flex-col justify-end bg-linear-to-t from-black/60 to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
       <h3 className="text-lg font-semibold text-white">{project.title}</h3>
-      <p className="line-clamp-2 text-sm text-zinc-200">{project.description}</p>
+      <p className="line-clamp-2 text-sm text-white/90">{project.description}</p>
     </div>
   </motion.div>
 ));
@@ -47,7 +47,7 @@ const ProjectModal = memo(({ project, onClose }: { project: Project; onClose: ()
       initial={{ scale: 0.9, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       exit={{ scale: 0.9, opacity: 0 }}
-      className="relative max-h-[90vh] w-full max-w-4xl overflow-auto rounded-xl bg-white p-6 dark:bg-zinc-900"
+      className="relative max-h-[90vh] w-full max-w-4xl overflow-auto rounded-xl bg-card p-6 text-card-foreground"
       onClick={(e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation()}
     >
       {project.image && (
@@ -62,13 +62,13 @@ const ProjectModal = memo(({ project, onClose }: { project: Project; onClose: ()
         </div>
       )}
       <div className="mt-6">
-        <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">{project.title}</h2>
-        <p className="mt-2 text-zinc-600 dark:text-zinc-400">{project.description}</p>
+        <h2 className="text-2xl font-bold text-foreground">{project.title}</h2>
+        <p className="mt-2 text-muted-foreground">{project.description}</p>
         <div className="mt-4 flex flex-wrap gap-2">
           {project.techStack.map((tech, index) => (
             <span
               key={index}
-              className="rounded-full bg-zinc-100 px-3 py-1 text-sm font-medium text-zinc-800 dark:bg-zinc-800 dark:text-zinc-300"
+              className="rounded-full bg-muted px-3 py-1 text-sm font-medium text-foreground"
             >
               {tech}
             </span>
@@ -79,7 +79,7 @@ const ProjectModal = memo(({ project, onClose }: { project: Project; onClose: ()
             href={project.link.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-6 inline-flex items-center rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-700 dark:bg-zinc-700 dark:hover:bg-zinc-600"
+            className="mt-6 inline-flex items-center rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"
           >
             View Project
             <svg className="ml-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -95,7 +95,7 @@ const ProjectModal = memo(({ project, onClose }: { project: Project; onClose: ()
       </div>
       <button
         onClick={onClose}
-        className="absolute right-4 top-4 rounded-full bg-white/10 p-2 text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-200"
+        className="absolute right-4 top-4 rounded-full bg-background/60 p-2 text-muted-foreground hover:text-foreground"
       >
         <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path

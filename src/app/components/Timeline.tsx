@@ -31,16 +31,16 @@ const TimelineItem = memo(({ date, title, subtitle, description }: {
     transition={{ type: "spring", stiffness: 100, damping: 15 }}
   >
     <div className="flex-none">
-      <div className="flex h-[42px] w-[42px] items-center justify-center rounded-full bg-zinc-100 text-sm font-medium dark:bg-zinc-800">
+      <div className="flex h-[42px] w-[42px] items-center justify-center rounded-full bg-muted text-sm font-medium text-foreground">
         {date.split('-')[0]}
       </div>
     </div>
-    <div className="flex-grow">
+    <div className="grow">
       <div className="flex flex-col">
-        <h3 className="text-base font-semibold text-zinc-900 dark:text-zinc-100">{title}</h3>
-        <p className="text-sm text-zinc-600 dark:text-zinc-400">{subtitle}</p>
+        <h3 className="text-base font-semibold text-foreground">{title}</h3>
+        <p className="text-sm text-muted-foreground">{subtitle}</p>
         {description && (
-          <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">{description}</p>
+          <p className="mt-2 text-sm text-muted-foreground">{description}</p>
         )}
       </div>
     </div>
@@ -76,7 +76,7 @@ export function Timeline({ work, education }: TimelineProps) {
   return (
     <div className="relative mt-8">
       <motion.div
-        className="absolute left-[20px] top-0 bottom-0 w-[2px] origin-top bg-zinc-200 dark:bg-zinc-700"
+        className="absolute left-[20px] top-0 bottom-0 w-[2px] origin-top bg-border"
         style={{ scaleY }}
       />
       <div className="relative">

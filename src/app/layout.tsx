@@ -2,6 +2,7 @@ import { Analytics } from "@vercel/analytics/react";
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import BackgroundAnimation from "@/components/BackgroundAnimation";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
 import "./globals.css";
@@ -91,14 +92,14 @@ export default function RootLayout({
       <body className={`${inter.className} bg-background text-foreground`}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
-          enableSystem={false}
-          forcedTheme="light"
+          defaultTheme="system"
+          enableSystem
           disableTransitionOnChange
           storageKey="cv-theme"
         >
           <div className="relative min-h-screen bg-background transition-colors duration-300">
             <BackgroundAnimation />
+            <ThemeToggle />
             <main className="relative z-10">
               {children}
             </main>

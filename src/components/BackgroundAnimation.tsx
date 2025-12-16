@@ -13,6 +13,9 @@ const BackgroundAnimation = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    const particleFill = resolvedTheme === 'dark' ? 'rgba(255, 255, 255, 0.22)' : 'rgba(0, 0, 0, 0.3)';
+    const lineBase = resolvedTheme === 'dark' ? [255, 255, 255] : [0, 0, 0];
+
     class Particle {
       x: number;
       y: number;
@@ -43,7 +46,7 @@ const BackgroundAnimation = () => {
       draw(ctx: CanvasRenderingContext2D) {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.3)';
+        ctx.fillStyle = particleFill;
         ctx.fill();
       }
     }
@@ -81,7 +84,7 @@ const BackgroundAnimation = () => {
 
           if (distance < 120) {
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(0, 0, 0, ${0.15 - distance/800})`;
+            ctx.strokeStyle = `rgba(${lineBase[0]}, ${lineBase[1]}, ${lineBase[2]}, ${0.12 - distance / 900})`;
             ctx.lineWidth = 1;
             ctx.moveTo(particle.x, particle.y);
             ctx.lineTo(particleArray[j].x, particleArray[j].y);
