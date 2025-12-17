@@ -41,7 +41,12 @@ interface SkillsProps {
  */
 export function Skills({ skills, className }: SkillsProps) {
   return (
-    <Section className={className}>
+    <Section
+      className={cn(
+        "rounded-lg border border-border bg-background p-4 shadow-sm print:border-0 print:bg-transparent print:p-0 print:shadow-none",
+        className
+      )}
+    >
       <h2 className="text-xl font-bold" id="skills-section">
         Skills
       </h2>

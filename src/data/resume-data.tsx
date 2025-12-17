@@ -10,7 +10,7 @@ export const RESUME_DATA = {
     'Senior Full Stack Engineer focused on building reliable enterprise systems, modernizing legacy platforms, and enabling teams to ship maintainable software—while staying curious about applied AI.',
   summary:
     'Full Stack Engineer with 16+ years of experience delivering enterprise ERP solutions end-to-end. My work spans .NET/Core, SQL, modern web technologies, and cloud infrastructure, with a focus on clarity, reliability, and long-term maintainability. I enjoy partnering with cross-functional teams to modernize legacy systems, improve performance, and simplify complex business workflows. Lately, I’ve been especially interested in practical ways to apply AI/ML to real products—enhancing automation, insights, and user experience without overcomplicating the solution.',
-  avatarUrl: 'https://cdn2.mallats.com/AmthalGroup/img/team/Vimal.jpg',
+  avatarUrl: 'https://avatars.githubusercontent.com/u/72629651?v=4',
   personalWebsiteUrl: 'https://hellovg.win',
   contact: {
     email: 'hey@hellovg.win',
