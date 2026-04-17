@@ -3,7 +3,7 @@ import { GitHubIcon, LinkedInIcon, XIcon, IGIcon } from '@/components/icons';
 
 export const RESUME_DATA = {
   name: 'Mr Vimal Govind Markkasseri',
-  initials: 'Mr.',
+  initials: 'VG',
   location: 'Manama, Bahrain GMT+3',
   locationLink: 'https://www.google.com/maps/place/bahrain',
   about:
@@ -54,7 +54,7 @@ export const RESUME_DATA = {
   ],
   work: [
     {
-      company: 'Al Amthal Group BSC Closed, Manama Bahrain',
+      company: 'Al Amthal Group BSC Closed, Manama, Bahrain',
       link: 'https://amthalgroup.com',
       badges: ['Full-Time'],
       title: 'Support Manager',
@@ -69,7 +69,7 @@ export const RESUME_DATA = {
         ' Mentored technical teams and established best practices for system reliability and performance optimization.',
     },
     {
-      company: 'Al Amthal Group BSC Closed, Manama Bahrain',
+      company: 'Al Amthal Group BSC Closed, Manama, Bahrain',
       link: 'https://amthalgroup.com',
       badges: ['Full-Time'],
       title: 'Senior Software Engineer',
@@ -84,7 +84,7 @@ export const RESUME_DATA = {
         ' Established Clean Architecture patterns and code quality standards adopted across the development team.',
     },
     {
-      company: 'Al Amthal Group BSC Closed, Manama Bahrain',
+      company: 'Al Amthal Group BSC Closed, Manama, Bahrain',
       link: 'https://amthalgroup.com',
       badges: ['Full-Time'],
       title: 'Software Engineer',
@@ -98,7 +98,6 @@ export const RESUME_DATA = {
   skills: [
     '.NET Core',
     'ASP.NET',
-    'SQL/MSSQL',
     'Entity Framework Core',
     'HTML/CSS',
     'JavaScript',

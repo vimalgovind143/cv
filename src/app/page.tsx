@@ -1,131 +1,237 @@
-import type { Metadata } from "next";
-import { Suspense } from "react";
-import { CommandMenu } from "@/components/command-menu";
-import { SectionErrorBoundary } from "@/components/section-error-boundary";
-import { SectionSkeleton } from "@/components/section-skeleton";
-import { RESUME_DATA } from "@/data/resume-data";
-import { generateResumeStructuredData } from "@/lib/structured-data";
-import { Education } from "./components/Education";
-import { Header } from "./components/Header";
-import { Projects } from "./components/Projects";
-import { Skills } from "./components/Skills";
-import { Summary } from "./components/Summary";
-import { WorkExperience } from "./components/WorkExperience";
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { Mail, MapPin, Rss, ArrowRight } from 'lucide-react';
+import { RESUME_DATA } from '@/data/resume-data';
+import { GitHubIcon, LinkedInIcon, XIcon, IGIcon } from '@/components/icons';
+import { TerminalWindow } from '@/components/TerminalWindow';
+import { getRecentPosts } from '@/lib/blog';
 
 export const metadata: Metadata = {
-  title: `${RESUME_DATA.name} - Resume`,
+  title: `${RESUME_DATA.name} - .NET Backend & SQL Engineer`,
   description: RESUME_DATA.about,
-  openGraph: {
-    title: `${RESUME_DATA.name} - Resume`,
-    description: RESUME_DATA.about,
-    type: "profile",
-    locale: "en_US",
-    images: [
-      {
-        url: "https://cv.jarocki.me/opengraph-image",
-        width: 1200,
-        height: 630,
-        alt: `${RESUME_DATA.name}'s profile picture`,
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: `${RESUME_DATA.name} - Resume`,
-    description: RESUME_DATA.about,
-    images: ["https://cv.jarocki.me/opengraph-image"],
-  },
 };
 
-/**
- * Transform social links for command menu
- */
-function getCommandMenuLinks() {
-  const links = [];
+const techStack = ['.NET Core', 'C#', 'SQL Server', 'EF Core', 'REST API', 'Docker', 'Azure'];
 
-  if (RESUME_DATA.personalWebsiteUrl) {
-    links.push({
-      url: RESUME_DATA.personalWebsiteUrl,
-      title: "Personal Website",
-    });
-  }
+const stats = [
+  { value: '16+', label: 'years exp' },
+  { value: '30+', label: 'projects' },
+  { value: '9+', label: 'articles' },
+];
 
-  return [
-    ...links,
-    ...RESUME_DATA.contact.social.map((socialMediaLink) => ({
-      url: socialMediaLink.url,
-      title: socialMediaLink.name,
-    })),
-  ];
-}
-
-export default function ResumePage() {
-  const structuredData = generateResumeStructuredData();
+export default function HomePage() {
+  const recentPosts = getRecentPosts(3);
 
   return (
-    <>
-      <script
-        type="application/ld+json"
-        // biome-ignore lint/security/noDangerouslySetInnerHtml: Safe for JSON-LD structured data
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(structuredData),
-        }}
-      />
-      <main
-        className="container relative mx-auto scroll-my-12 overflow-auto p-4 print:p-11 md:p-16"
-        id="main-content"
-      >
-        <div className="sr-only">
-          <h1>{RESUME_DATA.name}&apos;s Resume</h1>
+    <div className="mx-auto max-w-6xl px-6 py-16">
+      {/* ─── Hero: Two-Column Layout ─── */}
+      <section className="mb-24 flex flex-col gap-16 lg:flex-row lg:items-start lg:gap-20">
+        {/* Left Column */}
+        <div className="flex-1">
+          {/* Terminal Window */}
+          <TerminalWindow title="welcome.sh" className="mb-10">
+            <div className="space-y-1">
+              <p>
+                <span className="text-muted-foreground"># welcome.sh</span>
+              </p>
+              <p>
+                <span className="text-neon-green">vg@dev</span>
+                <span className="text-muted-foreground"> ~$ </span>
+                <span className="text-foreground">cat intro.md</span>
+              </p>
+              <br />
+              <p>
+                <span className="text-purple-400">const </span>
+                <span className="text-foreground">developer </span>
+                <span className="text-muted-foreground">= {'{'}</span>
+              </p>
+              <p className="pl-4">
+                <span className="text-neon-blue">name</span>
+                <span className="text-muted-foreground">: </span>
+                <span className="text-yellow-300">&quot;{RESUME_DATA.name}&quot;</span>
+                <span className="text-muted-foreground">,</span>
+              </p>
+              <p className="pl-4">
+                <span className="text-neon-blue">role</span>
+                <span className="text-muted-foreground">: </span>
+                <span className="text-yellow-300">&quot;Senior .NET Backend Engineer&quot;</span>
+                <span className="text-muted-foreground">,</span>
+              </p>
+              <p className="pl-4">
+                <span className="text-neon-blue">location</span>
+                <span className="text-muted-foreground">: </span>
+                <span className="text-yellow-300">&quot;{RESUME_DATA.location}&quot;</span>
+                <span className="text-muted-foreground">,</span>
+              </p>
+              <p className="pl-4">
+                <span className="text-neon-blue">passion</span>
+                <span className="text-muted-foreground">: [</span>
+                <span className="text-yellow-300">&quot;.NET Core&quot;</span>
+                <span className="text-muted-foreground">, </span>
+                <span className="text-yellow-300">&quot;SQL Server&quot;</span>
+                <span className="text-muted-foreground">, </span>
+                <span className="text-yellow-300">&quot;Clean Architecture&quot;</span>
+                <span className="text-muted-foreground">],</span>
+              </p>
+              <p className="pl-4">
+                <span className="text-neon-blue">status</span>
+                <span className="text-muted-foreground">: </span>
+                <span className="text-yellow-300">&quot;Building enterprise APIs&quot;</span>
+                <span className="ml-2 inline-block h-2 w-2 rounded-full bg-neon-green align-middle" />
+              </p>
+              <p>
+                <span className="text-muted-foreground">{'}'}</span>
+                <span className="text-muted-foreground">;</span>
+              </p>
+              <br />
+              <p>
+                <span className="text-neon-green">vg@dev</span>
+                <span className="text-muted-foreground"> ~$ </span>
+                <span className="animate-pulse text-neon-green">▎</span>
+              </p>
+            </div>
+          </TerminalWindow>
+
+          {/* Greeting */}
+          <h1 className="mb-3 font-heading text-5xl font-bold text-foreground md:text-6xl">
+            Hello, I&apos;m
+          </h1>
+          <h2 className="mb-6 font-heading text-5xl font-bold text-neon-green md:text-6xl">
+            Vimal Govind
+          </h2>
+
+          {/* Description */}
+          <p className="mb-8 max-w-lg font-body text-muted-foreground leading-relaxed">
+            Backend engineer specializing in{' '}
+            <span className="text-neon-green">.NET Core APIs</span>,{' '}
+            <span className="text-neon-blue">SQL Server</span>, and enterprise ERP systems.
+            16+ years delivering scalable, maintainable software in the Middle East.
+          </p>
+
+          {/* Social + CTA */}
+          <div className="flex flex-wrap items-center gap-3">
+            {RESUME_DATA.contact.social.map((social) => {
+              const IconComponent = social.icon;
+              return (
+                <a
+                  key={social.name}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.name}
+                  className="flex h-10 w-10 items-center justify-center rounded-lg border border-border text-muted-foreground transition-all hover:border-neon-green/60 hover:text-neon-green"
+                >
+                  <IconComponent className="h-5 w-5" />
+                </a>
+              );
+            })}
+            <a
+              href={`mailto:${RESUME_DATA.contact.email}`}
+              aria-label="Email"
+              className="flex h-10 w-10 items-center justify-center rounded-lg border border-border text-muted-foreground transition-all hover:border-neon-green/60 hover:text-neon-green"
+            >
+              <Mail className="h-5 w-5" />
+            </a>
+            <Link
+              href="/blog"
+              className="ml-2 font-mono text-sm text-neon-blue transition-colors hover:text-neon-green"
+            >
+              read blog →
+            </Link>
+          </div>
         </div>
 
-        <section
-          className="paper mx-auto w-full max-w-3xl space-y-8 rounded-2xl border border-border bg-card p-6 text-card-foreground shadow-sm print:space-y-4 print:border-0 print:p-0 print:shadow-none md:p-10"
-          aria-label="Resume Content"
-        >
-          <SectionErrorBoundary sectionName="Header">
-            <Suspense fallback={<SectionSkeleton lines={4} />}>
-              <Header />
-            </Suspense>
-          </SectionErrorBoundary>
-
-          <div className="space-y-8 print:space-y-4">
-            <SectionErrorBoundary sectionName="Summary">
-              <Suspense fallback={<SectionSkeleton lines={2} />}>
-                <Summary summary={RESUME_DATA.summary} />
-              </Suspense>
-            </SectionErrorBoundary>
-
-            <SectionErrorBoundary sectionName="Work Experience">
-              <Suspense fallback={<SectionSkeleton lines={6} />}>
-                <WorkExperience work={RESUME_DATA.work} />
-              </Suspense>
-            </SectionErrorBoundary>
-
-            <SectionErrorBoundary sectionName="Education">
-              <Suspense fallback={<SectionSkeleton lines={3} />}>
-                <Education education={RESUME_DATA.education} />
-              </Suspense>
-            </SectionErrorBoundary>
-
-            <SectionErrorBoundary sectionName="Skills">
-              <Suspense fallback={<SectionSkeleton lines={2} />}>
-                <Skills skills={RESUME_DATA.skills} />
-              </Suspense>
-            </SectionErrorBoundary>
-
-            <SectionErrorBoundary sectionName="Projects">
-              <Suspense fallback={<SectionSkeleton lines={5} />}>
-                <Projects projects={RESUME_DATA.projects} />
-              </Suspense>
-            </SectionErrorBoundary>
+        {/* Right Column */}
+        <div className="w-full lg:w-80 xl:w-96">
+          {/* Photo + Badge */}
+          <div className="relative mb-6">
+            <div className="relative overflow-hidden rounded-xl border border-border">
+              <img
+                src={RESUME_DATA.avatarUrl}
+                alt={RESUME_DATA.name}
+                className="h-72 w-full object-cover grayscale"
+              />
+              {/* Code badge */}
+              <div className="absolute right-3 top-3 flex items-center gap-1 rounded border border-neon-green bg-background/90 px-2 py-1">
+                <span className="font-mono text-xs font-bold text-neon-green">{'</>'}</span>
+              </div>
+            </div>
+            {/* Version badge */}
+            <div className="mt-3 inline-block rounded border border-neon-blue/60 px-3 py-1">
+              <span className="font-mono text-xs text-neon-blue">v16.0</span>
+            </div>
           </div>
-        </section>
 
-        <nav className="print:hidden" aria-label="Quick navigation">
-          <CommandMenu links={getCommandMenuLinks()} />
-        </nav>
-      </main>
-    </>
+          {/* Stats */}
+          <div className="mb-6 grid grid-cols-3 gap-3 sm:grid-cols-3">
+            {stats.map((stat, i) => (
+              <div
+                key={stat.label}
+                className="rounded-lg border border-border bg-card p-4 text-center"
+              >
+                <div
+                  className={`font-heading text-2xl font-bold ${
+                    i === 0 ? 'text-foreground' : i === 1 ? 'text-neon-blue' : 'text-yellow-400'
+                  }`}
+                >
+                  {stat.value}
+                </div>
+                <div className="mt-1 font-mono text-xs text-muted-foreground">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* Tech Stack */}
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="font-mono text-xs text-muted-foreground">stack:</span>
+            {techStack.map((tech) => (
+              <span
+                key={tech}
+                className="font-mono text-xs text-foreground/80"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Recent Activity Log ─── */}
+      {recentPosts.length > 0 && (
+        <section className="mb-16">
+          <TerminalWindow title="recent-activity.log">
+            <div className="space-y-2">
+              {recentPosts.map((post) => (
+                <Link
+                  key={post.slug}
+                  href={`/blog/${post.slug}`}
+                  className="flex flex-wrap items-center gap-2 group transition-colors hover:bg-muted/20 -mx-2 px-2 py-1 rounded"
+                >
+                  <span className="text-muted-foreground text-xs">[{post.date}]</span>
+                  <span className="rounded border border-neon-green/40 bg-neon-green/10 px-2 py-0.5 text-xs font-bold text-neon-green">
+                    PUBLISHED
+                  </span>
+                  <span className="text-foreground/80 group-hover:text-neon-blue transition-colors">
+                    {post.title}
+                  </span>
+                  <span className="ml-auto hidden font-mono text-xs text-muted-foreground md:block">
+                    {post.tags.join(', ')}
+                  </span>
+                </Link>
+              ))}
+              <div className="pt-2">
+                <Link
+                  href="/blog"
+                  className="flex items-center gap-2 font-mono text-xs text-neon-green hover:underline"
+                >
+                  <ArrowRight className="h-3 w-3" />
+                  view all articles
+                </Link>
+              </div>
+            </div>
+          </TerminalWindow>
+        </section>
+      )}
+    </div>
   );
 }

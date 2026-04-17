@@ -17,12 +17,21 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        heading: ['var(--font-heading)', 'sans-serif'],
+        body: ['var(--font-mono)', 'monospace'],
+        code: ['var(--font-mono)', 'monospace'],
+      },
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
+        'terminal-bg': '#1e1e1e',
+        'code-text': '#e6e6e6',
+        'neon-green': '#00FF00',
+        'neon-blue': '#00D7FF',
         primary: {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))',

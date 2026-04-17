@@ -1,115 +1,97 @@
 'use client';
-import React, { useEffect, useRef } from 'react';
-import { useTheme } from 'next-themes';
+import { useEffect, useRef } from 'react';
 
-const BackgroundAnimation = () => {
+const CHARS =
+  'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン' +
+  '0123456789' +
+  '{}[]<>()=>/\\.:;_+-|@#';
+
+export default function BackgroundAnimation() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const { resolvedTheme } = useTheme();
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const particleFill = resolvedTheme === 'dark' ? 'rgba(255, 255, 255, 0.22)' : 'rgba(0, 0, 0, 0.3)';
-    const lineBase = resolvedTheme === 'dark' ? [255, 255, 255] : [0, 0, 0];
+    const COL_W = 16;
+    const FONT_SIZE = 14;
+    let drops: number[] = [];
+    let speeds: number[] = [];
 
-    class Particle {
-      x: number;
-      y: number;
-      directionX: number;
-      directionY: number;
-      size: number;
-      
-      constructor(width: number, height: number) {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.directionX = (Math.random() - 0.5) * 2;
-        this.directionY = (Math.random() - 0.5) * 2;
-        this.size = 2;
+    const resize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      const cols = Math.floor(canvas.width / COL_W);
+      // Preserve existing columns, only add/trim as needed
+      while (drops.length < cols) {
+        drops.push(Math.random() * -80);
+        speeds.push(0.3 + Math.random() * 0.6);
       }
+      drops = drops.slice(0, cols);
+      speeds = speeds.slice(0, cols);
+    };
 
-      update(width: number, height: number) {
-        if (this.x > width || this.x < 0) {
-          this.directionX = -this.directionX;
+    resize();
+    window.addEventListener('resize', resize);
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const draw = () => {
+      // Translucent black overlay creates the fading trail effect
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.font = `${FONT_SIZE}px "JetBrains Mono", monospace`;
+
+      for (let i = 0; i < drops.length; i++) {
+        const char = CHARS[Math.floor(Math.random() * CHARS.length)];
+        const x = i * COL_W;
+        const row = Math.floor(drops[i]);
+        const yPx = row * FONT_SIZE;
+
+        // Head character — full bright green
+        ctx.fillStyle = '#00FF00';
+        ctx.fillText(char, x, yPx);
+
+        drops[i] += speeds[i];
+
+        // Reset column off the top after it exits the bottom (with random stagger)
+        if (yPx > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
         }
-        if (this.y > height || this.y < 0) {
-          this.directionY = -this.directionY;
-        }
-
-        this.x += this.directionX;
-        this.y += this.directionY;
-      }
-
-      draw(ctx: CanvasRenderingContext2D) {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = particleFill;
-        ctx.fill();
-      }
-    }
-
-    const particleArray: Particle[] = [];
-    const numberOfParticles = 50;
-
-    const initializeCanvas = () => {
-      const { innerWidth, innerHeight } = window;
-      canvas.width = innerWidth;
-      canvas.height = innerHeight;
-      
-      particleArray.length = 0;
-      for (let i = 0; i < numberOfParticles; i++) {
-        particleArray.push(new Particle(canvas.width, canvas.height));
       }
     };
 
-    initializeCanvas();
-    window.addEventListener('resize', initializeCanvas);
+    let rafId: number;
 
-    function animate() {
-      if (!ctx || !canvas) return;
-      
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      particleArray.forEach((particle, i) => {
-        particle.update(canvas.width, canvas.height);
-        particle.draw(ctx);
-
-        for (let j = i; j < particleArray.length; j++) {
-          const dx = particle.x - particleArray[j].x;
-          const dy = particle.y - particleArray[j].y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-
-          if (distance < 120) {
-            ctx.beginPath();
-            ctx.strokeStyle = `rgba(${lineBase[0]}, ${lineBase[1]}, ${lineBase[2]}, ${0.12 - distance / 900})`;
-            ctx.lineWidth = 1;
-            ctx.moveTo(particle.x, particle.y);
-            ctx.lineTo(particleArray[j].x, particleArray[j].y);
-            ctx.stroke();
-          }
-        }
-      });
-
-      requestAnimationFrame(animate);
+    if (prefersReduced) {
+      // Single static frame for reduced-motion users
+      ctx.fillStyle = '#000';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      draw();
+    } else {
+      const loop = () => {
+        draw();
+        rafId = requestAnimationFrame(loop);
+      };
+      loop();
     }
-
-    animate();
 
     return () => {
-      window.removeEventListener('resize', initializeCanvas);
+      window.removeEventListener('resize', resize);
+      cancelAnimationFrame(rafId);
     };
-  }, [resolvedTheme]);
+  }, []);
 
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 z-0 h-full w-full bg-transparent"
-      style={{ pointerEvents: 'none' }}
+      aria-hidden="true"
+      className="fixed inset-0 z-0 h-full w-full print:hidden"
+      style={{ pointerEvents: 'none', opacity: 0.18 }}
     />
   );
-};
+}
 
-export default BackgroundAnimation;

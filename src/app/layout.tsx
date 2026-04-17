@@ -1,22 +1,28 @@
 import { Analytics } from "@vercel/analytics/react";
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
-import BackgroundAnimation from "@/components/BackgroundAnimation";
-import { ThemeToggle } from "@/components/ThemeToggle";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { Navigation } from "@/components/Navigation";
+import BackgroundAnimation from "@/components/BackgroundAnimation";
 
 import "./globals.css";
 import type React from "react";
-import { ErrorBoundary } from "@/components/error-boundary";
 import { RESUME_DATA } from "@/data/resume-data";
 
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
+  variable: "--font-heading",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-mono",
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://cv.jarocki.me"),
+  metadataBase: new URL("https://hellovg.win"),
   title: {
     default: `${RESUME_DATA.name} - ${RESUME_DATA.about}`,
     template: `%s | ${RESUME_DATA.name}`,
@@ -64,7 +70,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${RESUME_DATA.name} - ${RESUME_DATA.about}`,
     description: RESUME_DATA.about,
-    creator: "@BartoszJarocki",
+    creator: "@vimalgovind",
   },
   alternates: {
     canonical: RESUME_DATA.personalWebsiteUrl,
@@ -89,17 +95,17 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
-      <body className={`${inter.className} bg-background text-foreground`}>
+      <body className={`${inter.variable} ${jetbrainsMono.variable} font-body bg-background text-foreground`}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="dark"
+          enableSystem={false}
           disableTransitionOnChange
           storageKey="cv-theme"
         >
-          <div className="relative min-h-screen bg-background transition-colors duration-300">
+          <div className="min-h-screen bg-background text-foreground">
             <BackgroundAnimation />
-            <ThemeToggle />
+            <Navigation />
             <main className="relative z-10">
               {children}
             </main>

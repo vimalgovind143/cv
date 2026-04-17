@@ -3,95 +3,65 @@
 
 @layer base {
   :root {
-    --background: 45 38% 97%;
-    --foreground: 224 71.4% 4.1%;
+    --background: 0 0% 5%;
+    --foreground: 0 0% 92%;
 
-    --card: 45 40% 99%;
-    --card-foreground: 224 71.4% 4.1%;
+    --card: 230 20% 11%;
+    --card-foreground: 0 0% 92%;
 
-    --popover: 45 40% 99%;
-    --popover-foreground: 224 71.4% 4.1%;
+    --popover: 230 20% 11%;
+    --popover-foreground: 0 0% 92%;
 
-    --primary: 220.9 39.3% 11%;
-    --primary-foreground: 210 20% 98%;
+    --primary: 120 100% 50%;
+    --primary-foreground: 0 0% 5%;
 
-    --secondary: 45 24% 93%;
-    --secondary-foreground: 220.9 39.3% 11%;
+    --secondary: 195 100% 50%;
+    --secondary-foreground: 0 0% 5%;
 
-    --muted: 45 22% 92%;
-    --muted-foreground: 220 8.9% 46.1%;
+    --muted: 230 15% 18%;
+    --muted-foreground: 0 0% 55%;
 
-    --accent: 45 24% 93%;
-    --accent-foreground: 220.9 39.3% 11%;
+    --accent: 120 100% 50%;
+    --accent-foreground: 0 0% 5%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 20% 98%;
+    --destructive-foreground: 0 0% 92%;
 
-    --border: 45 16% 85%;
-    --input: 45 16% 85%;
-    --ring: 224 71.4% 4.1%;
+    --border: 230 15% 22%;
+    --input: 230 15% 22%;
+    --ring: 120 100% 50%;
 
     --radius: 0.5rem;
   }
 
-  .paper {
-    --background: 45 38% 97%;
-    --foreground: 224 71.4% 4.1%;
-
-    --card: 45 40% 99%;
-    --card-foreground: 224 71.4% 4.1%;
-
-    --popover: 45 40% 99%;
-    --popover-foreground: 224 71.4% 4.1%;
-
-    --primary: 220.9 39.3% 11%;
-    --primary-foreground: 210 20% 98%;
-
-    --secondary: 45 24% 93%;
-    --secondary-foreground: 220.9 39.3% 11%;
-
-    --muted: 45 22% 92%;
-    --muted-foreground: 220 8.9% 46.1%;
-
-    --accent: 45 24% 93%;
-    --accent-foreground: 220.9 39.3% 11%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 20% 98%;
-
-    --border: 45 16% 85%;
-    --input: 45 16% 85%;
-    --ring: 224 71.4% 4.1%;
-  }
-
   .dark {
-    --background: 224 71.4% 4.1%;
-    --foreground: 210 20% 98%;
+    --background: 0 0% 5%;
+    --foreground: 0 0% 92%;
 
-    --card: 224 71.4% 4.1%;
-    --card-foreground: 210 20% 98%;
+    --card: 230 20% 11%;
+    --card-foreground: 0 0% 92%;
 
-    --popover: 224 71.4% 4.1%;
-    --popover-foreground: 210 20% 98%;
+    --popover: 230 20% 11%;
+    --popover-foreground: 0 0% 92%;
 
-    --primary: 210 20% 98%;
-    --primary-foreground: 220.9 39.3% 11%;
+    --primary: 120 100% 50%;
+    --primary-foreground: 0 0% 5%;
 
-    --secondary: 215 27.9% 16.9%;
-    --secondary-foreground: 210 20% 98%;
+    --secondary: 195 100% 50%;
+    --secondary-foreground: 0 0% 5%;
 
-    --muted: 215 27.9% 16.9%;
-    --muted-foreground: 217.9 10.6% 64.9%;
+    --muted: 230 15% 18%;
+    --muted-foreground: 0 0% 55%;
 
-    --accent: 215 27.9% 16.9%;
-    --accent-foreground: 210 20% 98%;
+    --accent: 120 100% 50%;
+    --accent-foreground: 0 0% 5%;
 
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 20% 98%;
+    --destructive-foreground: 0 0% 92%;
 
-    --border: 215 27.9% 16.9%;
-    --input: 215 27.9% 16.9%;
-    --ring: 216 12.2% 83.9%;
+    --border: 230 15% 22%;
+    --input: 230 15% 22%;
+    --ring: 120 100% 50%;
   }
 }
 
@@ -102,8 +72,165 @@
   body {
     @apply bg-background text-foreground;
   }
+  /* Mobile-specific improvements */
+  html {
+    @apply overflow-x-hidden;
+  }
 }
 
 .print-force-new-page {
   page-break-before: always;
+}
+
+/* Blog-specific styles */
+.prose {
+  @apply font-body text-foreground;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+  @apply font-heading text-foreground font-bold;
+}
+
+.prose h1 {
+  @apply text-3xl md:text-4xl mb-4;
+}
+
+.prose h2 {
+  @apply text-2xl md:text-3xl mb-3 mt-8;
+}
+
+.prose h3 {
+  @apply text-xl md:text-2xl mb-2 mt-6;
+}
+
+.prose p {
+  @apply mb-4 leading-relaxed;
+}
+
+.prose a {
+  @apply text-neon-blue hover:underline;
+}
+
+.prose code {
+  @apply font-mono rounded bg-muted px-2 py-1 text-sm text-neon-green;
+}
+
+.prose pre {
+  @apply rounded-lg border border-border bg-terminal-bg p-4 mb-4 overflow-x-auto;
+}
+
+.prose pre code {
+  @apply bg-transparent p-0 text-code-text;
+}
+
+.prose ul,
+.prose ol {
+  @apply mb-4 ml-6;
+}
+
+.prose li {
+  @apply mb-2;
+}
+
+.prose blockquote {
+  @apply border-l-4 border-neon-green pl-4 italic text-muted-foreground;
+}
+
+.prose img {
+  @apply rounded-lg mb-4;
+}
+
+.prose hr {
+  @apply border-border my-8;
+}
+
+.prose table {
+  @apply w-full mb-4;
+}
+
+.prose th,
+.prose td {
+  @apply border border-border px-4 py-2;
+}
+
+.prose th {
+  @apply bg-muted font-semibold;
+}
+
+/* Syntax highlighting overrides for highlight.js */
+.hljs {
+  @apply bg-terminal-bg text-code-text;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-title,
+.hljs-section,
+.hljs-doctag,
+.hljs-name,
+.hljs-strong {
+  @apply text-neon-green;
+}
+
+.hljs-comment {
+  @apply text-muted-foreground italic;
+}
+
+.hljs-string,
+.hljs-title.class_,
+.hljs-class .hljs-title,
+.hljs-title.class_.inherited__ {
+  @apply text-neon-blue;
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr {
+  @apply text-neon-green;
+}
+
+.hljs-function,.hljs-title.function_,.hljs-attr {
+  @apply text-neon-blue;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-muted-foreground/30 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-muted-foreground/50;
+}
+
+/* Selection highlight */
+::selection {
+  @apply bg-neon-green/30 text-foreground;
+}
+
+/* Terminal cursor animation */
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+.cursor-blink {
+  animation: blink 1s infinite;
 }
