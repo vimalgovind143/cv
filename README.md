@@ -1,4 +1,4 @@
-![cv](https://raw.githubusercontent.com/vimalgovind143/cv/main/Capture.JPG)
+![cv](https://github.com/user-attachments/assets/5fcf8a2b-8d07-4822-a61f-b7a36d71d08b)
 
 # Vimal Govind Markkasseri - Developer CV & Blog
 
