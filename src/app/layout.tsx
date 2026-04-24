@@ -74,6 +74,9 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: RESUME_DATA.personalWebsiteUrl,
+    types: {
+      'application/rss+xml': `${RESUME_DATA.personalWebsiteUrl}/feed.xml`,
+    },
   },
 };
 

@@ -6,6 +6,23 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Blog - Mr Vimal Govind Markkasseri',
   description: 'Articles about software engineering, system architecture, web development, and emerging technologies.',
+  keywords: [
+    '.NET Core',
+    'C#',
+    'SQL Server',
+    'software architecture',
+    'clean architecture',
+    'enterprise software',
+    'ERP',
+    'Azure',
+    'React',
+    'TypeScript',
+    'technical blog',
+    'Mr Vimal Govind Markkasseri',
+  ],
+  alternates: {
+    canonical: 'https://hellovg.win/blog',
+  },
 };
 
 export default function BlogPage() {

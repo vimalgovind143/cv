@@ -56,12 +56,12 @@ export function generateWebPageStructuredData() {
     "@type": "WebPage",
     name: `${RESUME_DATA.name} - Resume`,
     description: RESUME_DATA.about,
-    url: "https://cv.jarocki.me",
+    url: RESUME_DATA.personalWebsiteUrl,
     inLanguage: "en-US",
     isPartOf: {
       "@type": "WebSite",
       name: `${RESUME_DATA.name}'s Professional Resume`,
-      url: "https://cv.jarocki.me",
+      url: RESUME_DATA.personalWebsiteUrl,
     },
     about: {
       "@type": "Person",
@@ -81,6 +81,47 @@ export function generateResumeStructuredData() {
     about: generatePersonStructuredData(),
     name: `${RESUME_DATA.name} - Professional Resume`,
     description: `Professional resume and portfolio of ${RESUME_DATA.name}, ${RESUME_DATA.about}`,
-    url: "https://cv.jarocki.me",
+    url: RESUME_DATA.personalWebsiteUrl,
+  };
+}
+
+export function generateBlogPostStructuredData({
+  title,
+  excerpt,
+  date,
+  slug,
+  tags,
+}: {
+  title: string;
+  excerpt: string;
+  date: string;
+  slug: string;
+  tags: string[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: title,
+    description: excerpt,
+    datePublished: date,
+    dateModified: date,
+    url: `${RESUME_DATA.personalWebsiteUrl}/blog/${slug}`,
+    author: {
+      "@type": "Person",
+      name: RESUME_DATA.name,
+      url: RESUME_DATA.personalWebsiteUrl,
+    },
+    publisher: {
+      "@type": "Person",
+      name: RESUME_DATA.name,
+      url: RESUME_DATA.personalWebsiteUrl,
+    },
+    keywords: tags.join(", "),
+    inLanguage: "en-US",
+    isPartOf: {
+      "@type": "Blog",
+      name: `${RESUME_DATA.name}'s Blog`,
+      url: `${RESUME_DATA.personalWebsiteUrl}/blog`,
+    },
   };
 }

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { PostMeta } from '@/lib/blog';
-import { Calendar, Tag } from 'lucide-react';
+import { Calendar, Tag, Clock } from 'lucide-react';
 
 interface ArticleCardProps {
   post: PostMeta;
@@ -20,6 +20,10 @@ export function ArticleCard({ post }: ArticleCardProps) {
                 day: 'numeric',
               })}
             </time>
+          </div>
+          <div className="flex items-center gap-1">
+            <Clock className="h-4 w-4" />
+            <span>{post.readingTime} min read</span>
           </div>
         </div>
         

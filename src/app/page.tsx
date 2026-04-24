@@ -1,14 +1,31 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Mail, MapPin, Rss, ArrowRight } from 'lucide-react';
+import { Mail, MapPin, Rss, ArrowRight, ExternalLink } from 'lucide-react';
 import { RESUME_DATA } from '@/data/resume-data';
 import { GitHubIcon, LinkedInIcon, XIcon, IGIcon } from '@/components/icons';
 import { TerminalWindow } from '@/components/TerminalWindow';
 import { getRecentPosts } from '@/lib/blog';
+import { generatePersonStructuredData } from '@/lib/structured-data';
+import { CopyEmailButton } from '@/components/CopyEmailButton';
 
 export const metadata: Metadata = {
   title: `${RESUME_DATA.name} - .NET Backend & SQL Engineer`,
   description: RESUME_DATA.about,
+  keywords: [
+    '.NET Core',
+    'C#',
+    'SQL Server',
+    'Entity Framework',
+    'ASP.NET',
+    'senior software engineer',
+    'full stack developer',
+    'Bahrain',
+    'ERP systems',
+    RESUME_DATA.name,
+  ],
+  alternates: {
+    canonical: 'https://hellovg.win',
+  },
 };
 
 const techStack = ['.NET Core', 'C#', 'SQL Server', 'EF Core', 'REST API', 'Docker', 'Azure'];
@@ -19,11 +36,20 @@ const stats = [
   { value: '9+', label: 'articles' },
 ];
 
+const featuredProjects = RESUME_DATA.projects.slice(0, 3);
+
 export default function HomePage() {
   const recentPosts = getRecentPosts(3);
 
+  const jsonLd = generatePersonStructuredData();
+
   return (
     <div className="mx-auto max-w-6xl px-6 py-16">
+      <script
+        type="application/ld+json"
+        // biome-ignore lint/security/noDangerouslySetInnerHtmlWithChildren: structured data
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* ─── Hero: Two-Column Layout ─── */}
       <section className="mb-24 flex flex-col gap-16 lg:flex-row lg:items-start lg:gap-20">
         {/* Left Column */}
@@ -132,9 +158,16 @@ export default function HomePage() {
             >
               <Mail className="h-5 w-5" />
             </a>
+            <a
+              href={`mailto:${RESUME_DATA.contact.email}`}
+              className="ml-2 inline-flex items-center gap-2 rounded-lg border border-neon-green bg-neon-green/10 px-4 py-2 font-mono text-sm font-semibold text-neon-green transition-all hover:bg-neon-green hover:text-background"
+            >
+              Hire me
+            </a>
+            <CopyEmailButton email={RESUME_DATA.contact.email} />
             <Link
               href="/blog"
-              className="ml-2 font-mono text-sm text-neon-blue transition-colors hover:text-neon-green"
+              className="font-mono text-sm text-neon-blue transition-colors hover:text-neon-green"
             >
               read blog →
             </Link>
@@ -196,6 +229,49 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ─── Featured Projects ─── */}
+      <section className="mb-16">
+        <div className="mb-6 flex items-center justify-between">
+          <h2 className="font-heading text-2xl font-bold text-foreground">
+            <span className="text-neon-green">//</span> Featured Projects
+          </h2>
+          <Link
+            href="/projects"
+            className="flex items-center gap-1 font-mono text-sm text-neon-blue transition-colors hover:text-neon-green"
+          >
+            view all <ArrowRight className="h-3 w-3" />
+          </Link>
+        </div>
+        <div className="grid gap-4 md:grid-cols-3">
+          {featuredProjects.map((project) => (
+            <a
+              key={project.title}
+              href={project.link?.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block rounded-lg border border-border bg-card p-5 transition-all hover:border-neon-green/50"
+            >
+              <div className="mb-3 flex items-start justify-between gap-2">
+                <h3 className="font-heading text-sm font-semibold text-foreground transition-colors group-hover:text-neon-green">
+                  {project.title}
+                </h3>
+                <ExternalLink className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />
+              </div>
+              <p className="mb-4 font-body text-xs text-muted-foreground line-clamp-3">
+                {project.description}
+              </p>
+              <div className="flex flex-wrap gap-1">
+                {project.techStack.slice(0, 3).map((t) => (
+                  <span key={t} className="rounded bg-muted px-1.5 py-0.5 font-mono text-xs text-muted-foreground">
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+
       {/* ─── Recent Activity Log ─── */}
       {recentPosts.length > 0 && (
         <section className="mb-16">
@@ -232,6 +308,29 @@ export default function HomePage() {
           </TerminalWindow>
         </section>
       )}
+
+      {/* ─── Newsletter ─── */}
+      <section className="mb-8">
+        <TerminalWindow title="subscribe.sh">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="font-mono text-sm text-foreground">
+                <span className="text-neon-green">$</span> subscribe --topic engineering
+              </p>
+              <p className="mt-1 font-mono text-xs text-muted-foreground">
+                New articles on .NET, SQL, architecture &amp; AI — no spam.
+              </p>
+            </div>
+            <a
+              href={`mailto:${RESUME_DATA.contact.email}?subject=Subscribe%20to%20your%20newsletter&body=Hey%20Vimal%2C%20please%20add%20me%20to%20your%20mailing%20list!`}
+              className="inline-flex shrink-0 items-center gap-2 rounded border border-neon-green/60 bg-neon-green/10 px-4 py-2 font-mono text-sm text-neon-green transition-all hover:bg-neon-green hover:text-background"
+            >
+              <Mail className="h-4 w-4" />
+              Subscribe via email
+            </a>
+          </div>
+        </TerminalWindow>
+      </section>
     </div>
   );
 }

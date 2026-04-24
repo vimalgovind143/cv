@@ -13,10 +13,26 @@ export interface PostMeta {
   date: string;
   tags: string[];
   excerpt: string;
+  readingTime: number;
 }
 
 export interface Post extends PostMeta {
   contentHtml: string;
+}
+
+/**
+ * Estimate reading time in minutes based on word count (200 WPM).
+ */
+function calculateReadingTime(text: string): number {
+  const words = text.trim().split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.ceil(words / 200));
+}
+
+/**
+ * Demote all <h1> tags to <h2> so the page's own <h1> title stays unique.
+ */
+function demoteH1(html: string): string {
+  return html.replace(/<h1(\s[^>]*)?>/g, '<h2$1>').replace(/<\/h1>/g, '</h2>');
 }
 
 /**
@@ -39,6 +55,7 @@ export function getAllPosts(): PostMeta[] {
         date: matterResult.data.date || '',
         tags: matterResult.data.tags || [],
         excerpt: matterResult.data.excerpt || '',
+        readingTime: calculateReadingTime(matterResult.content),
       };
     });
   
@@ -65,7 +82,7 @@ export async function getPostBySlug(slug: string): Promise<Post> {
     .use(highlight)
     .process(matterResult.content);
   
-  const contentHtml = processedContent.toString();
+  const contentHtml = demoteH1(processedContent.toString());
   
   return {
     slug,
@@ -73,6 +90,7 @@ export async function getPostBySlug(slug: string): Promise<Post> {
     date: matterResult.data.date || '',
     tags: matterResult.data.tags || [],
     excerpt: matterResult.data.excerpt || '',
+    readingTime: calculateReadingTime(matterResult.content),
     contentHtml,
   };
 }
@@ -115,4 +133,18 @@ export function getAllPostSlugs(): string[] {
   return fileNames
     .filter((fileName) => fileName.endsWith('.md'))
     .map((fileName) => fileName.replace(/\.md$/, ''));
+}
+
+/**
+ * Get related posts based on shared tags, excluding the current post.
+ */
+export function getRelatedPosts(currentSlug: string, tags: string[], limit: number = 3): PostMeta[] {
+  const posts = getAllPosts();
+  return posts
+    .filter((p) => p.slug !== currentSlug)
+    .map((p) => ({ post: p, common: p.tags.filter((t) => tags.includes(t)).length }))
+    .filter(({ common }) => common > 0)
+    .sort((a, b) => b.common - a.common)
+    .slice(0, limit)
+    .map(({ post }) => post);
 }
