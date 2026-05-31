@@ -5,7 +5,8 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Blog - Mr Vimal Govind Markkasseri',
-  description: 'Articles about software engineering, system architecture, web development, and emerging technologies.',
+  description:
+    'Articles about software engineering, system architecture, web development, and emerging technologies.',
   keywords: [
     '.NET Core',
     'C#',
@@ -33,12 +34,13 @@ export default function BlogPage() {
     <div className="mx-auto max-w-6xl px-6 py-16">
       {/* Header */}
       <div className="mb-12">
-        <p className="mb-2 font-mono text-sm text-neon-green">~/blog</p>
-        <h1 className="mb-3 font-heading text-4xl font-bold text-foreground md:text-5xl">
-          Articles
+        <p className="text-neon-green mb-2 font-mono text-sm">~/blog</p>
+        <h1 className="font-heading text-foreground mb-4 max-w-3xl text-4xl font-semibold md:text-5xl">
+          Notes on software engineering, architecture, and practical AI.
         </h1>
-        <p className="font-mono text-muted-foreground">
-          Thoughts on software engineering, architecture, and technology
+        <p className="text-muted-foreground max-w-2xl text-lg leading-8">
+          Field notes from building and modernizing enterprise systems with .NET, SQL Server, web
+          platforms, and AI-assisted workflows.
         </p>
       </div>
 
@@ -51,7 +53,7 @@ export default function BlogPage() {
             <span className="text-neon-green">vg@dev ~$ </span>
             ls articles/
           </p>
-          <p className="mt-2 text-muted-foreground">No articles yet. Check back soon!</p>
+          <p className="text-muted-foreground mt-2">No articles yet. Check back soon!</p>
         </TerminalWindow>
       )}
     </div>

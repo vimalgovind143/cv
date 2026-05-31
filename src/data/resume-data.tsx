@@ -7,9 +7,9 @@ export const RESUME_DATA = {
   location: 'Manama, Bahrain GMT+3',
   locationLink: 'https://www.google.com/maps/place/bahrain',
   about:
-    'Senior Full Stack Engineer focused on building reliable enterprise systems, modernizing legacy platforms, and enabling teams to ship maintainable software—while staying curious about applied AI.',
+    'Senior Full Stack Engineer focused on building reliable enterprise systems, modernizing legacy platforms, and adding practical AI capabilities with tools such as Semantic Kernel and Azure OpenAI.',
   summary:
-    'Full Stack Engineer with 16+ years of experience delivering enterprise ERP solutions end-to-end. My work spans .NET/Core, SQL, modern web technologies, and cloud infrastructure, with a focus on clarity, reliability, and long-term maintainability. I enjoy partnering with cross-functional teams to modernize legacy systems, improve performance, and simplify complex business workflows. Lately, I’ve been especially interested in practical ways to apply AI/ML to real products—enhancing automation, insights, and user experience without overcomplicating the solution.',
+    'Full Stack Engineer with 16+ years of experience delivering enterprise ERP solutions end-to-end. My work spans .NET/Core, SQL, modern web technologies, cloud infrastructure, and applied AI, with a focus on clarity, reliability, and long-term maintainability. I enjoy partnering with cross-functional teams to modernize legacy systems, improve performance, and simplify complex business workflows. Lately, I’ve been especially interested in practical AI agents and workflow automation with Semantic Kernel, Azure OpenAI, native plugins, and retrieval patterns that enhance real products without overcomplicating the solution.',
   avatarUrl: 'https://avatars.githubusercontent.com/u/72629651?v=4',
   personalWebsiteUrl: 'https://hellovg.win',
   contact: {
@@ -126,11 +126,29 @@ export const RESUME_DATA = {
     'Business Process Analysis',
     'Performance Optimization',
     'Emerging Technologies',
+    'Semantic Kernel',
+    'Azure OpenAI',
+    'Microsoft.Extensions.AI',
+    'AI Agents',
+    'Function Calling',
+    'RAG',
+    'Prompt Engineering',
     'Artificial Intelligence (AI)',
     'Machine Learning Fundamentals',
     'Data Analysis',
   ],
   projects: [
+    {
+      title: 'Semantic Kernel ERP Workflow Assistant',
+      techStack: ['Semantic Kernel', 'Azure OpenAI', '.NET Core', 'Function Calling', 'SQL Server'],
+      description:
+        'Designed a practical AI assistant concept for ERP workflows using Semantic Kernel native plugins, Azure OpenAI chat completion, and function calling. The assistant pattern focuses on support-friendly automation such as retrieving customer balances, explaining payroll exceptions, drafting approval summaries, and routing operational requests with human review before sensitive actions.',
+      logo: AmthalLogo,
+      link: {
+        label: 'amthalgroup.com',
+        href: 'https://www.amthalgroup.com',
+      },
+    },
     {
       title: 'Enterprise Payroll System',
       techStack: ['ASP.NET Core', 'SQL Server', 'Entity Framework', 'REST APIs'],

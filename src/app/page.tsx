@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Mail, MapPin, Rss, ArrowRight, ExternalLink } from 'lucide-react';
+import { ArrowRight, BriefcaseBusiness, ExternalLink, Mail, MapPin, Newspaper } from 'lucide-react';
 import { RESUME_DATA } from '@/data/resume-data';
-import { GitHubIcon, LinkedInIcon, XIcon, IGIcon } from '@/components/icons';
 import { TerminalWindow } from '@/components/TerminalWindow';
 import { getRecentPosts } from '@/lib/blog';
 import { generatePersonStructuredData } from '@/lib/structured-data';
@@ -28,12 +27,20 @@ export const metadata: Metadata = {
   },
 };
 
-const techStack = ['.NET Core', 'C#', 'SQL Server', 'EF Core', 'REST API', 'Docker', 'Azure'];
+const techStack = [
+  '.NET Core',
+  'C#',
+  'SQL Server',
+  'EF Core',
+  'Azure',
+  'Semantic Kernel',
+  'Azure OpenAI',
+];
 
 const stats = [
-  { value: '16+', label: 'years exp' },
-  { value: '30+', label: 'projects' },
-  { value: '9+', label: 'articles' },
+  { value: '16+', label: 'years engineering enterprise systems' },
+  { value: '30+', label: 'projects shipped across ERP domains' },
+  { value: '9+', label: 'technical articles and notes' },
 ];
 
 const featuredProjects = RESUME_DATA.projects.slice(0, 3);
@@ -44,200 +51,132 @@ export default function HomePage() {
   const jsonLd = generatePersonStructuredData();
 
   return (
-    <div className="mx-auto max-w-6xl px-6 py-16">
+    <div className="mx-auto max-w-6xl px-6 py-14 md:py-20">
       <script
         type="application/ld+json"
         // biome-ignore lint/security/noDangerouslySetInnerHtmlWithChildren: structured data
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      {/* ─── Hero: Two-Column Layout ─── */}
-      <section className="mb-24 flex flex-col gap-16 lg:flex-row lg:items-start lg:gap-20">
-        {/* Left Column */}
-        <div className="flex-1">
-          {/* Terminal Window */}
-          <TerminalWindow title="welcome.sh" className="mb-10">
-            <div className="space-y-1">
-              <p>
-                <span className="text-muted-foreground"># welcome.sh</span>
-              </p>
-              <p>
-                <span className="text-neon-green">vg@dev</span>
-                <span className="text-muted-foreground"> ~$ </span>
-                <span className="text-foreground">cat intro.md</span>
-              </p>
-              <br />
-              <p>
-                <span className="text-purple-400">const </span>
-                <span className="text-foreground">developer </span>
-                <span className="text-muted-foreground">= {'{'}</span>
-              </p>
-              <p className="pl-4">
-                <span className="text-neon-blue">name</span>
-                <span className="text-muted-foreground">: </span>
-                <span className="text-yellow-300">&quot;{RESUME_DATA.name}&quot;</span>
-                <span className="text-muted-foreground">,</span>
-              </p>
-              <p className="pl-4">
-                <span className="text-neon-blue">role</span>
-                <span className="text-muted-foreground">: </span>
-                <span className="text-yellow-300">&quot;Senior .NET Backend Engineer&quot;</span>
-                <span className="text-muted-foreground">,</span>
-              </p>
-              <p className="pl-4">
-                <span className="text-neon-blue">location</span>
-                <span className="text-muted-foreground">: </span>
-                <span className="text-yellow-300">&quot;{RESUME_DATA.location}&quot;</span>
-                <span className="text-muted-foreground">,</span>
-              </p>
-              <p className="pl-4">
-                <span className="text-neon-blue">passion</span>
-                <span className="text-muted-foreground">: [</span>
-                <span className="text-yellow-300">&quot;.NET Core&quot;</span>
-                <span className="text-muted-foreground">, </span>
-                <span className="text-yellow-300">&quot;SQL Server&quot;</span>
-                <span className="text-muted-foreground">, </span>
-                <span className="text-yellow-300">&quot;Clean Architecture&quot;</span>
-                <span className="text-muted-foreground">],</span>
-              </p>
-              <p className="pl-4">
-                <span className="text-neon-blue">status</span>
-                <span className="text-muted-foreground">: </span>
-                <span className="text-yellow-300">&quot;Building enterprise APIs&quot;</span>
-                <span className="ml-2 inline-block h-2 w-2 rounded-full bg-neon-green align-middle" />
-              </p>
-              <p>
-                <span className="text-muted-foreground">{'}'}</span>
-                <span className="text-muted-foreground">;</span>
-              </p>
-              <br />
-              <p>
-                <span className="text-neon-green">vg@dev</span>
-                <span className="text-muted-foreground"> ~$ </span>
-                <span className="animate-pulse text-neon-green">▎</span>
-              </p>
-            </div>
-          </TerminalWindow>
-
-          {/* Greeting */}
-          <h1 className="mb-3 font-heading text-5xl font-bold text-foreground md:text-6xl">
-            Hello, I&apos;m
+      <section className="mb-20 grid gap-12 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-center">
+        <div>
+          <div className="border-neon-green/30 bg-neon-green/10 text-neon-green mb-5 inline-flex items-center gap-2 rounded-full border px-3 py-1 font-mono text-xs">
+            <span className="bg-neon-green h-1.5 w-1.5 rounded-full" />
+            Available for enterprise backend and modernization work
+          </div>
+          <h1 className="font-heading text-foreground max-w-3xl text-4xl font-semibold tracking-normal md:text-6xl">
+            Senior full stack engineer building reliable ERP and business systems.
           </h1>
-          <h2 className="mb-6 font-heading text-5xl font-bold text-neon-green md:text-6xl">
-            Vimal Govind
-          </h2>
-
-          {/* Description */}
-          <p className="mb-8 max-w-lg font-body text-muted-foreground leading-relaxed">
-            Backend engineer specializing in{' '}
-            <span className="text-neon-green">.NET Core APIs</span>,{' '}
-            <span className="text-neon-blue">SQL Server</span>, and enterprise ERP systems.
-            16+ years delivering scalable, maintainable software in the Middle East.
+          <p className="text-muted-foreground mt-6 max-w-2xl text-lg leading-8">
+            I help teams modernize legacy platforms, design maintainable .NET services, and keep
+            SQL-heavy enterprise applications fast, observable, and supportable.
           </p>
+          <div className="text-muted-foreground mt-5 flex flex-wrap items-center gap-3 text-sm">
+            <span className="inline-flex items-center gap-2">
+              <MapPin className="text-neon-green h-4 w-4" />
+              {RESUME_DATA.location}
+            </span>
+            <span className="bg-muted-foreground/50 hidden h-1 w-1 rounded-full sm:block" />
+            <span>{techStack.join(' / ')}</span>
+          </div>
 
-          {/* Social + CTA */}
-          <div className="flex flex-wrap items-center gap-3">
-            {RESUME_DATA.contact.social.map((social) => {
-              const IconComponent = social.icon;
-              return (
-                <a
-                  key={social.name}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.name}
-                  className="flex h-10 w-10 items-center justify-center rounded-lg border border-border text-muted-foreground transition-all hover:border-neon-green/60 hover:text-neon-green"
-                >
-                  <IconComponent className="h-5 w-5" />
-                </a>
-              );
-            })}
+          <div className="mt-8 flex flex-wrap items-center gap-3">
             <a
               href={`mailto:${RESUME_DATA.contact.email}`}
-              aria-label="Email"
-              className="flex h-10 w-10 items-center justify-center rounded-lg border border-border text-muted-foreground transition-all hover:border-neon-green/60 hover:text-neon-green"
+              className="bg-neon-green hover:bg-neon-green/85 inline-flex h-11 items-center gap-2 rounded-lg px-5 font-mono text-sm font-semibold text-[#0b1118] transition-colors"
             >
-              <Mail className="h-5 w-5" />
+              <Mail className="h-4 w-4" />
+              Contact me
             </a>
-            <a
-              href={`mailto:${RESUME_DATA.contact.email}`}
-              className="ml-2 inline-flex items-center gap-2 rounded-lg border border-neon-green bg-neon-green/10 px-4 py-2 font-mono text-sm font-semibold text-neon-green transition-all hover:bg-neon-green hover:text-background"
-            >
-              Hire me
-            </a>
-            <CopyEmailButton email={RESUME_DATA.contact.email} />
             <Link
-              href="/blog"
-              className="font-mono text-sm text-neon-blue transition-colors hover:text-neon-green"
+              href="/projects"
+              className="border-border bg-card/70 text-foreground hover:border-neon-blue/60 hover:text-neon-blue inline-flex h-11 items-center gap-2 rounded-lg border px-5 font-mono text-sm transition-colors"
             >
-              read blog →
+              View projects
+              <ArrowRight className="h-4 w-4" />
             </Link>
+            <CopyEmailButton email={RESUME_DATA.contact.email} />
+          </div>
+
+          <div className="mt-8 grid gap-3 sm:grid-cols-3">
+            {stats.map((stat) => (
+              <div key={stat.label} className="border-border/80 bg-card/70 rounded-lg border p-4">
+                <div className="font-heading text-foreground text-2xl font-semibold">
+                  {stat.value}
+                </div>
+                <div className="text-muted-foreground mt-1 text-sm leading-5">{stat.label}</div>
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Right Column */}
-        <div className="w-full lg:w-80 xl:w-96">
-          {/* Photo + Badge */}
-          <div className="relative mb-6">
-            <div className="relative overflow-hidden rounded-xl border border-border">
+        <aside className="space-y-5">
+          <div className="border-border/80 bg-card/80 relative overflow-hidden rounded-lg border p-4 shadow-[0_18px_60px_rgba(0,0,0,0.22)]">
+            <div className="border-border/70 relative overflow-hidden rounded-md border">
               <img
                 src={RESUME_DATA.avatarUrl}
                 alt={RESUME_DATA.name}
                 className="h-72 w-full object-cover grayscale"
               />
-              {/* Code badge */}
-              <div className="absolute right-3 top-3 flex items-center gap-1 rounded border border-neon-green bg-background/90 px-2 py-1">
-                <span className="font-mono text-xs font-bold text-neon-green">{'</>'}</span>
-              </div>
             </div>
-            {/* Version badge */}
-            <div className="mt-3 inline-block rounded border border-neon-blue/60 px-3 py-1">
-              <span className="font-mono text-xs text-neon-blue">v16.0</span>
+            <div className="mt-4">
+              <p className="font-heading text-foreground text-lg font-semibold">Vimal Govind</p>
+              <p className="text-muted-foreground mt-1 text-sm">.NET, SQL Server, ERP systems</p>
+            </div>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {RESUME_DATA.contact.social.map((social) => {
+                const IconComponent = social.icon;
+                return (
+                  <a
+                    key={social.name}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.name}
+                    className="border-border text-muted-foreground hover:border-neon-green/60 hover:text-neon-green flex h-9 w-9 items-center justify-center rounded-md border transition-all"
+                  >
+                    <IconComponent className="h-4 w-4" />
+                  </a>
+                );
+              })}
             </div>
           </div>
-
-          {/* Stats */}
-          <div className="mb-6 grid grid-cols-3 gap-3 sm:grid-cols-3">
-            {stats.map((stat, i) => (
-              <div
-                key={stat.label}
-                className="rounded-lg border border-border bg-card p-4 text-center"
-              >
-                <div
-                  className={`font-heading text-2xl font-bold ${
-                    i === 0 ? 'text-foreground' : i === 1 ? 'text-neon-blue' : 'text-yellow-400'
-                  }`}
-                >
-                  {stat.value}
-                </div>
-                <div className="mt-1 font-mono text-xs text-muted-foreground">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-
-          {/* Tech Stack */}
-          <div className="flex flex-wrap items-center gap-2">
-            <span className="font-mono text-xs text-muted-foreground">stack:</span>
-            {techStack.map((tech) => (
-              <span
-                key={tech}
-                className="font-mono text-xs text-foreground/80"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
-        </div>
+          <TerminalWindow title="focus.json">
+            <div className="space-y-1">
+              <p>
+                <span className="text-muted-foreground">{'{'}</span>
+              </p>
+              <p className="pl-4">
+                <span className="text-neon-blue">&quot;role&quot;</span>
+                <span className="text-muted-foreground">: </span>
+                <span className="text-yellow-300">&quot;Senior Engineer&quot;</span>,
+              </p>
+              <p className="pl-4">
+                <span className="text-neon-blue">&quot;systems&quot;</span>
+                <span className="text-muted-foreground">: </span>
+                <span className="text-yellow-300">&quot;ERP, payroll, accounting&quot;</span>,
+              </p>
+              <p className="pl-4">
+                <span className="text-neon-blue">&quot;strength&quot;</span>
+                <span className="text-muted-foreground">: </span>
+                <span className="text-yellow-300">&quot;reliable modernization&quot;</span>
+              </p>
+              <p>
+                <span className="text-muted-foreground">{'}'}</span>
+              </p>
+            </div>
+          </TerminalWindow>
+        </aside>
       </section>
 
-      {/* ─── Featured Projects ─── */}
       <section className="mb-16">
         <div className="mb-6 flex items-center justify-between">
-          <h2 className="font-heading text-2xl font-bold text-foreground">
-            <span className="text-neon-green">//</span> Featured Projects
+          <h2 className="font-heading text-foreground flex items-center gap-2 text-2xl font-semibold">
+            <BriefcaseBusiness className="text-neon-green h-5 w-5" />
+            Featured Projects
           </h2>
           <Link
             href="/projects"
-            className="flex items-center gap-1 font-mono text-sm text-neon-blue transition-colors hover:text-neon-green"
+            className="text-neon-blue hover:text-neon-green flex items-center gap-1 font-mono text-sm transition-colors"
           >
             view all <ArrowRight className="h-3 w-3" />
           </Link>
@@ -249,20 +188,23 @@ export default function HomePage() {
               href={project.link?.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group block rounded-lg border border-border bg-card p-5 transition-all hover:border-neon-green/50"
+              className="group border-border/80 bg-card/75 hover:border-neon-green/50 hover:bg-card flex min-h-64 flex-col rounded-lg border p-5 transition-all"
             >
               <div className="mb-3 flex items-start justify-between gap-2">
-                <h3 className="font-heading text-sm font-semibold text-foreground transition-colors group-hover:text-neon-green">
+                <h3 className="font-heading text-foreground group-hover:text-neon-green text-base font-semibold transition-colors">
                   {project.title}
                 </h3>
-                <ExternalLink className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />
+                <ExternalLink className="text-muted-foreground h-3.5 w-3.5 shrink-0" />
               </div>
-              <p className="mb-4 font-body text-xs text-muted-foreground line-clamp-3">
+              <p className="text-muted-foreground mb-5 line-clamp-4 flex-1 text-sm leading-6">
                 {project.description}
               </p>
               <div className="flex flex-wrap gap-1">
                 {project.techStack.slice(0, 3).map((t) => (
-                  <span key={t} className="rounded bg-muted px-1.5 py-0.5 font-mono text-xs text-muted-foreground">
+                  <span
+                    key={t}
+                    className="bg-muted text-muted-foreground rounded px-1.5 py-0.5 font-mono text-xs"
+                  >
                     {t}
                   </span>
                 ))}
@@ -272,58 +214,54 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ─── Recent Activity Log ─── */}
       {recentPosts.length > 0 && (
         <section className="mb-16">
-          <TerminalWindow title="recent-activity.log">
-            <div className="space-y-2">
-              {recentPosts.map((post) => (
-                <Link
-                  key={post.slug}
-                  href={`/blog/${post.slug}`}
-                  className="flex flex-wrap items-center gap-2 group transition-colors hover:bg-muted/20 -mx-2 px-2 py-1 rounded"
-                >
-                  <span className="text-muted-foreground text-xs">[{post.date}]</span>
-                  <span className="rounded border border-neon-green/40 bg-neon-green/10 px-2 py-0.5 text-xs font-bold text-neon-green">
-                    PUBLISHED
-                  </span>
-                  <span className="text-foreground/80 group-hover:text-neon-blue transition-colors">
-                    {post.title}
-                  </span>
-                  <span className="ml-auto hidden font-mono text-xs text-muted-foreground md:block">
-                    {post.tags.join(', ')}
-                  </span>
-                </Link>
-              ))}
-              <div className="pt-2">
-                <Link
-                  href="/blog"
-                  className="flex items-center gap-2 font-mono text-xs text-neon-green hover:underline"
-                >
-                  <ArrowRight className="h-3 w-3" />
-                  view all articles
-                </Link>
-              </div>
-            </div>
-          </TerminalWindow>
+          <div className="mb-6 flex items-center justify-between">
+            <h2 className="font-heading text-foreground flex items-center gap-2 text-2xl font-semibold">
+              <Newspaper className="text-neon-blue h-5 w-5" />
+              Recent Writing
+            </h2>
+            <Link
+              href="/blog"
+              className="text-neon-blue hover:text-neon-green flex items-center gap-1 font-mono text-sm transition-colors"
+            >
+              all articles <ArrowRight className="h-3 w-3" />
+            </Link>
+          </div>
+          <div className="grid gap-3">
+            {recentPosts.map((post) => (
+              <Link
+                key={post.slug}
+                href={`/blog/${post.slug}`}
+                className="group border-border/80 bg-card/70 hover:border-neon-blue/50 grid gap-2 rounded-lg border p-4 transition-colors md:grid-cols-[120px_1fr_auto] md:items-center"
+              >
+                <span className="text-muted-foreground font-mono text-xs">{post.date}</span>
+                <span className="font-heading text-foreground group-hover:text-neon-blue text-base font-medium transition-colors">
+                  {post.title}
+                </span>
+                <span className="text-muted-foreground hidden font-mono text-xs md:block">
+                  {post.tags.join(', ')}
+                </span>
+              </Link>
+            ))}
+          </div>
         </section>
       )}
 
-      {/* ─── Newsletter ─── */}
       <section className="mb-8">
         <TerminalWindow title="subscribe.sh">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="font-mono text-sm text-foreground">
+              <p className="text-foreground font-mono text-sm">
                 <span className="text-neon-green">$</span> subscribe --topic engineering
               </p>
-              <p className="mt-1 font-mono text-xs text-muted-foreground">
+              <p className="text-muted-foreground mt-1 font-mono text-xs">
                 New articles on .NET, SQL, architecture &amp; AI — no spam.
               </p>
             </div>
             <a
               href={`mailto:${RESUME_DATA.contact.email}?subject=Subscribe%20to%20your%20newsletter&body=Hey%20Vimal%2C%20please%20add%20me%20to%20your%20mailing%20list!`}
-              className="inline-flex shrink-0 items-center gap-2 rounded border border-neon-green/60 bg-neon-green/10 px-4 py-2 font-mono text-sm text-neon-green transition-all hover:bg-neon-green hover:text-background"
+              className="border-neon-green/60 bg-neon-green/10 text-neon-green hover:bg-neon-green inline-flex shrink-0 items-center gap-2 rounded border px-4 py-2 font-mono text-sm transition-all hover:text-[#0b1118]"
             >
               <Mail className="h-4 w-4" />
               Subscribe via email

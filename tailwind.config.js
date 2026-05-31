@@ -19,8 +19,9 @@ module.exports = {
     extend: {
       fontFamily: {
         heading: ['var(--font-heading)', 'sans-serif'],
-        body: ['var(--font-mono)', 'monospace'],
+        body: ['var(--font-heading)', 'sans-serif'],
         code: ['var(--font-mono)', 'monospace'],
+        mono: ['var(--font-mono)', 'monospace'],
       },
       colors: {
         border: 'hsl(var(--border))',
@@ -28,10 +29,10 @@ module.exports = {
         ring: 'hsl(var(--ring))',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
-        'terminal-bg': '#1e1e1e',
-        'code-text': '#e6e6e6',
-        'neon-green': '#00FF00',
-        'neon-blue': '#00D7FF',
+        'terminal-bg': '#0f1411',
+        'code-text': '#e6eee9',
+        'neon-green': '#5ee787',
+        'neon-blue': '#66d9ef',
         primary: {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))',

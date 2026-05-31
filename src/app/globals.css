@@ -1,67 +1,67 @@
-@config "../../tailwind.config.js";
-@import "tailwindcss";
+@config '../../tailwind.config.js';
+@import 'tailwindcss';
 
 @layer base {
   :root {
-    --background: 0 0% 5%;
-    --foreground: 0 0% 92%;
+    --background: 210 24% 98%;
+    --foreground: 216 24% 12%;
 
-    --card: 230 20% 11%;
-    --card-foreground: 0 0% 92%;
+    --card: 0 0% 100%;
+    --card-foreground: 216 24% 12%;
 
-    --popover: 230 20% 11%;
-    --popover-foreground: 0 0% 92%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 216 24% 12%;
 
-    --primary: 120 100% 50%;
-    --primary-foreground: 0 0% 5%;
+    --primary: 146 52% 35%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 195 100% 50%;
-    --secondary-foreground: 0 0% 5%;
+    --secondary: 194 70% 42%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 230 15% 18%;
-    --muted-foreground: 0 0% 55%;
+    --muted: 210 20% 93%;
+    --muted-foreground: 215 12% 43%;
 
-    --accent: 120 100% 50%;
-    --accent-foreground: 0 0% 5%;
+    --accent: 146 52% 35%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 92%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 230 15% 22%;
-    --input: 230 15% 22%;
-    --ring: 120 100% 50%;
+    --border: 214 18% 84%;
+    --input: 214 18% 84%;
+    --ring: 146 52% 35%;
 
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: 0 0% 5%;
-    --foreground: 0 0% 92%;
+    --background: 216 24% 7%;
+    --foreground: 210 22% 92%;
 
-    --card: 230 20% 11%;
-    --card-foreground: 0 0% 92%;
+    --card: 216 22% 10%;
+    --card-foreground: 210 22% 92%;
 
-    --popover: 230 20% 11%;
-    --popover-foreground: 0 0% 92%;
+    --popover: 216 22% 10%;
+    --popover-foreground: 210 22% 92%;
 
-    --primary: 120 100% 50%;
-    --primary-foreground: 0 0% 5%;
+    --primary: 143 73% 64%;
+    --primary-foreground: 216 24% 7%;
 
-    --secondary: 195 100% 50%;
-    --secondary-foreground: 0 0% 5%;
+    --secondary: 190 83% 67%;
+    --secondary-foreground: 216 24% 7%;
 
-    --muted: 230 15% 18%;
-    --muted-foreground: 0 0% 55%;
+    --muted: 216 18% 16%;
+    --muted-foreground: 210 13% 66%;
 
-    --accent: 120 100% 50%;
-    --accent-foreground: 0 0% 5%;
+    --accent: 143 73% 64%;
+    --accent-foreground: 216 24% 7%;
 
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 92%;
+    --destructive-foreground: 210 22% 92%;
 
-    --border: 230 15% 22%;
-    --input: 230 15% 22%;
-    --ring: 120 100% 50%;
+    --border: 216 16% 22%;
+    --input: 216 16% 22%;
+    --ring: 143 73% 64%;
   }
 }
 
@@ -70,7 +70,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
   }
   /* Mobile-specific improvements */
   html {
@@ -95,15 +95,15 @@
 }
 
 .prose h1 {
-  @apply text-3xl md:text-4xl mb-4;
+  @apply mb-4 text-3xl md:text-4xl;
 }
 
 .prose h2 {
-  @apply text-2xl md:text-3xl mb-3 mt-8;
+  @apply mt-8 mb-3 text-2xl md:text-3xl;
 }
 
 .prose h3 {
-  @apply text-xl md:text-2xl mb-2 mt-6;
+  @apply mt-6 mb-2 text-xl md:text-2xl;
 }
 
 .prose p {
@@ -115,15 +115,15 @@
 }
 
 .prose code {
-  @apply font-mono rounded bg-muted px-2 py-1 text-sm text-neon-green;
+  @apply bg-muted text-neon-green rounded px-2 py-1 font-mono text-sm;
 }
 
 .prose pre {
-  @apply rounded-lg border border-border bg-terminal-bg p-4 mb-4 overflow-x-auto;
+  @apply border-border bg-terminal-bg mb-4 overflow-x-auto rounded-lg border p-4;
 }
 
 .prose pre code {
-  @apply bg-transparent p-0 text-code-text;
+  @apply text-code-text bg-transparent p-0;
 }
 
 .prose ul,
@@ -136,11 +136,11 @@
 }
 
 .prose blockquote {
-  @apply border-l-4 border-neon-green pl-4 italic text-muted-foreground;
+  @apply border-neon-green text-muted-foreground border-l-4 pl-4 italic;
 }
 
 .prose img {
-  @apply rounded-lg mb-4;
+  @apply mb-4 rounded-lg;
 }
 
 .prose hr {
@@ -148,12 +148,12 @@
 }
 
 .prose table {
-  @apply w-full mb-4;
+  @apply mb-4 w-full;
 }
 
 .prose th,
 .prose td {
-  @apply border border-border px-4 py-2;
+  @apply border-border border px-4 py-2;
 }
 
 .prose th {
@@ -194,7 +194,9 @@
   @apply text-neon-green;
 }
 
-.hljs-function,.hljs-title.function_,.hljs-attr {
+.hljs-function,
+.hljs-title.function_,
+.hljs-attr {
   @apply text-neon-blue;
 }
 
@@ -223,10 +225,12 @@
 
 /* Terminal cursor animation */
 @keyframes blink {
-  0%, 50% {
+  0%,
+  50% {
     opacity: 1;
   }
-  51%, 100% {
+  51%,
+  100% {
     opacity: 0;
   }
 }

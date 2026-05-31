@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ExternalLink, ArrowLeft } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Layers3 } from 'lucide-react';
 import { RESUME_DATA } from '@/data/resume-data';
 import { TerminalWindow } from '@/components/TerminalWindow';
 
@@ -23,86 +23,97 @@ export const metadata: Metadata = {
   },
 };
 
+function getProjectDomain(title: string) {
+  if (title.includes('Payroll')) return 'Payroll';
+  if (title.includes('Accounting')) return 'Finance';
+  if (title.includes('Inventory')) return 'Operations';
+  if (title.includes('Microfinance')) return 'Lending';
+  if (title.includes('Trading')) return 'Sales';
+  if (title.includes('Modernization')) return 'Modernization';
+  if (title.includes('Document')) return 'Workflow';
+  if (title.includes('Analytics')) return 'Analytics';
+  return 'Enterprise';
+}
+
 export default function ProjectsPage() {
   return (
     <div className="mx-auto max-w-6xl px-6 py-16">
-      {/* Breadcrumb */}
       <Link
         href="/"
-        className="mb-8 inline-flex items-center gap-2 font-mono text-sm text-muted-foreground transition-colors hover:text-neon-green"
+        className="text-muted-foreground hover:text-neon-green mb-8 inline-flex items-center gap-2 font-mono text-sm transition-colors"
       >
         <ArrowLeft className="h-4 w-4" />
         ~/home
       </Link>
 
-      {/* Header */}
       <div className="mb-12">
-        <p className="mb-2 font-mono text-sm text-neon-green">~/projects</p>
-        <h1 className="mb-3 font-heading text-4xl font-bold text-foreground md:text-5xl">
-          Projects
+        <p className="text-neon-green mb-2 font-mono text-sm">~/projects</p>
+        <h1 className="font-heading text-foreground mb-4 max-w-3xl text-4xl font-semibold md:text-5xl">
+          Enterprise products across payroll, finance, operations, and modernization.
         </h1>
-        <p className="font-mono text-muted-foreground">
-          Enterprise solutions built and shipped over 16+ years
+        <p className="text-muted-foreground max-w-2xl text-lg leading-8">
+          A selection of systems designed, built, modernized, and supported across ERP-heavy
+          business environments.
         </p>
       </div>
 
-      {/* Terminal summary */}
       <TerminalWindow title="ls -la projects/" className="mb-12">
-        <div className="space-y-1">
-          <p>
-            <span className="text-neon-green">vg@dev</span>
-            <span className="text-muted-foreground"> ~$ </span>
-            <span className="text-foreground">ls -la projects/</span>
-          </p>
-          <p className="text-muted-foreground">total {RESUME_DATA.projects.length} projects</p>
-          {RESUME_DATA.projects.map((p, i) => (
-            <p key={p.title} className="font-mono text-xs">
-              <span className="mr-4 text-neon-blue">{String(i + 1).padStart(2, '0')}</span>
-              <span className="text-foreground">{p.title}</span>
-              <span className="ml-2 text-muted-foreground">
-                [{p.techStack.slice(0, 2).join(', ')}]
-              </span>
+        <div className="grid gap-4 md:grid-cols-3">
+          <div>
+            <p className="text-muted-foreground font-mono text-xs">Portfolio size</p>
+            <p className="text-foreground mt-1 text-2xl font-semibold">
+              {RESUME_DATA.projects.length} systems
             </p>
-          ))}
+          </div>
+          <div>
+            <p className="text-muted-foreground font-mono text-xs">Core platform</p>
+            <p className="text-foreground mt-1">.NET Core, SQL Server, Angular, Azure</p>
+          </div>
+          <div>
+            <p className="text-muted-foreground font-mono text-xs">Common outcome</p>
+            <p className="text-foreground mt-1">More reliable releases and cleaner operations</p>
+          </div>
         </div>
       </TerminalWindow>
 
-      {/* Projects Grid */}
       <div className="grid gap-6 md:grid-cols-2">
         {RESUME_DATA.projects.map((project) => (
           <article
             key={project.title}
-            className="group flex flex-col rounded-lg border border-border bg-card p-6 transition-all hover:border-neon-green/50"
+            className="group border-border/80 bg-card/75 hover:border-neon-green/50 hover:bg-card flex min-h-80 flex-col rounded-lg border p-6 transition-all"
           >
-            {/* Title row */}
             <div className="mb-3 flex items-start justify-between gap-3">
-              <h2 className="font-heading text-lg font-semibold text-foreground transition-colors group-hover:text-neon-green">
-                {project.title}
-              </h2>
+              <div>
+                <span className="border-neon-blue/30 bg-neon-blue/10 text-neon-blue mb-2 inline-flex items-center gap-1 rounded-md border px-2 py-1 font-mono text-xs">
+                  <Layers3 className="h-3 w-3" />
+                  {getProjectDomain(project.title)}
+                </span>
+                <h2 className="font-heading text-foreground group-hover:text-neon-green text-xl font-semibold transition-colors">
+                  {project.title}
+                </h2>
+              </div>
               {project.link && (
                 <a
                   href={project.link.href}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`Visit ${project.link.label}`}
-                  className="shrink-0 text-muted-foreground transition-colors hover:text-neon-green"
+                  className="text-muted-foreground hover:text-neon-green shrink-0 transition-colors"
                 >
                   <ExternalLink className="h-4 w-4" />
                 </a>
               )}
             </div>
 
-            {/* Description */}
-            <p className="mb-5 flex-1 font-body text-sm text-muted-foreground leading-relaxed">
+            <p className="text-muted-foreground mb-5 line-clamp-5 flex-1 text-sm leading-7">
               {project.description}
             </p>
 
-            {/* Tech stack */}
             <div className="flex flex-wrap gap-2">
               {project.techStack.map((tech) => (
                 <span
                   key={tech}
-                  className="rounded bg-muted px-2 py-0.5 font-mono text-xs text-muted-foreground"
+                  className="bg-muted text-muted-foreground rounded px-2 py-0.5 font-mono text-xs"
                 >
                   {tech}
                 </span>

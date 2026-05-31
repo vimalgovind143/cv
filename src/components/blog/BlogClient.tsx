@@ -30,13 +30,13 @@ export function BlogClient({ posts, tags }: BlogClientProps) {
     <>
       {/* Search input */}
       <div className="relative mb-6">
-        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+        <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
         <input
           type="search"
           placeholder="Search articles…"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="w-full rounded-lg border border-border bg-card py-2 pl-9 pr-4 font-mono text-sm text-foreground placeholder:text-muted-foreground focus:border-neon-green/60 focus:outline-none"
+          className="border-border/80 bg-card/75 text-foreground placeholder:text-muted-foreground focus:border-neon-green/60 w-full rounded-lg border py-3 pr-4 pl-9 text-sm focus:outline-none"
         />
       </div>
 
@@ -51,7 +51,7 @@ export function BlogClient({ posts, tags }: BlogClientProps) {
           ))}
         </div>
       ) : (
-        <p className="font-mono text-muted-foreground">No articles found.</p>
+        <p className="text-muted-foreground font-mono">No articles found.</p>
       )}
     </>
   );

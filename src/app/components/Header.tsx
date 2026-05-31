@@ -1,12 +1,8 @@
 import { GlobeIcon, MailIcon, PhoneIcon } from 'lucide-react';
-import Image, { type StaticImageData } from 'next/image';
 import React from 'react';
 import { Avatar } from '@/components/avatar';
 import { Button } from '@/components/ui/button';
-import { GitHubIcon, LinkedInIcon } from '@/components/icons';
-import { XIcon } from '@/components/icons/XIcon';
 import { RESUME_DATA } from '@/data/resume-data';
-import type { ResumeIcon } from '@/lib/types';
 
 interface LocationLinkProps {
   location: typeof RESUME_DATA.location;
@@ -15,7 +11,7 @@ interface LocationLinkProps {
 
 function LocationLink({ location, locationLink }: LocationLinkProps) {
   return (
-    <p className="max-w-md items-center text-pretty font-mono text-xs text-foreground">
+    <p className="text-foreground max-w-md items-center font-mono text-xs text-pretty">
       <a
         className="inline-flex gap-x-1.5 align-baseline leading-none hover:underline"
         href={locationLink}
@@ -54,7 +50,7 @@ interface ContactButtonsProps {
 function ContactButtons({ contact, personalWebsiteUrl }: ContactButtonsProps) {
   return (
     <ul
-      className="flex list-none gap-x-1 pt-1 font-mono text-sm text-foreground/80 print:hidden"
+      className="text-foreground/80 flex list-none gap-x-1 pt-1 font-mono text-sm print:hidden"
       aria-label="Contact links"
     >
       {personalWebsiteUrl && (
@@ -93,10 +89,10 @@ interface PrintContactProps {
 
 function PrintContact({ contact, personalWebsiteUrl }: PrintContactProps) {
   return (
-    <div className="hidden gap-x-2 font-mono text-sm text-foreground/80 print:flex print:text-[12px]">
+    <div className="text-foreground/80 hidden gap-x-2 font-mono text-sm print:flex print:text-[12px]">
       {personalWebsiteUrl && (
         <>
-          <a className="underline hover:text-foreground/70" href={personalWebsiteUrl}>
+          <a className="hover:text-foreground/70 underline" href={personalWebsiteUrl}>
             {new URL(personalWebsiteUrl).hostname}
           </a>
           <span aria-hidden="true">/</span>
@@ -104,14 +100,14 @@ function PrintContact({ contact, personalWebsiteUrl }: PrintContactProps) {
       )}
       {contact.email && (
         <>
-          <a className="underline hover:text-foreground/70" href={`mailto:${contact.email}`}>
+          <a className="hover:text-foreground/70 underline" href={`mailto:${contact.email}`}>
             {contact.email}
           </a>
           <span aria-hidden="true">/</span>
         </>
       )}
       {contact.tel && (
-        <a className="underline hover:text-foreground/70" href={`tel:${contact.tel}`}>
+        <a className="hover:text-foreground/70 underline" href={`tel:${contact.tel}`}>
           {contact.tel}
         </a>
       )}
@@ -129,7 +125,7 @@ export function Header() {
         <h1 className="text-2xl font-bold" id="resume-name">
           {RESUME_DATA.name}
         </h1>
-        <p className="max-w-md text-pretty font-mono text-sm text-foreground/80 print:text-[12px]">
+        <p className="text-foreground/80 max-w-md font-mono text-sm text-pretty print:text-[12px]">
           {RESUME_DATA.about}
         </p>
 

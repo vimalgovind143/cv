@@ -89,9 +89,8 @@ export default function BackgroundAnimation() {
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className="fixed inset-0 z-0 h-full w-full print:hidden"
-      style={{ pointerEvents: 'none', opacity: 0.18 }}
+      className="fixed inset-0 z-0 h-full w-full opacity-0 transition-opacity duration-300 dark:opacity-[0.08] print:hidden"
+      style={{ pointerEvents: 'none' }}
     />
   );
 }
-
