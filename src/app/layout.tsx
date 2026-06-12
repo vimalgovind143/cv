@@ -4,6 +4,7 @@ import { Inter, JetBrains_Mono } from 'next/font/google';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { Navigation } from '@/components/Navigation';
 import BackgroundAnimation from '@/components/BackgroundAnimation';
+import PointerTechTrail from '@/components/PointerTechTrail';
 
 import './globals.css';
 import type React from 'react';
@@ -106,6 +107,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           <div className="bg-background text-foreground min-h-screen">
             <BackgroundAnimation />
+            <PointerTechTrail />
             <Navigation />
             <main className="relative z-10">{children}</main>
             <Analytics />

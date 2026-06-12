@@ -238,3 +238,54 @@
 .cursor-blink {
   animation: blink 1s infinite;
 }
+
+.pointer-tech-spark {
+  --spark-x: 0;
+  --spark-y: -32px;
+  --spark-rotate: 0deg;
+  position: absolute;
+  translate: -50% -50%;
+  animation: pointer-tech-spark 900ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  border: 1px solid hsl(var(--border) / 0.72);
+  border-radius: 999px;
+  background:
+    linear-gradient(135deg, hsl(var(--card) / 0.92), hsl(var(--muted) / 0.72)),
+    hsl(var(--card));
+  box-shadow:
+    0 10px 28px hsl(var(--foreground) / 0.1),
+    0 0 18px hsl(var(--primary) / 0.16);
+  color: hsl(var(--primary));
+  font-family: var(--font-mono), monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0.28rem 0.42rem;
+  transform: translate3d(0, 0, 0) rotate(0deg) scale(0.9);
+  white-space: nowrap;
+  will-change: opacity, transform;
+}
+
+.dark .pointer-tech-spark {
+  border-color: hsl(var(--primary) / 0.28);
+  background:
+    linear-gradient(135deg, hsl(var(--card) / 0.88), hsl(var(--primary) / 0.12)),
+    hsl(var(--card));
+  box-shadow:
+    0 12px 34px hsl(0 0% 0% / 0.3),
+    0 0 22px hsl(var(--primary) / 0.24);
+}
+
+@keyframes pointer-tech-spark {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(0.72);
+  }
+  18% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--spark-x), var(--spark-y), 0) rotate(var(--spark-rotate))
+      scale(1.08);
+  }
+}
