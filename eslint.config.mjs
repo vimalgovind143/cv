@@ -2,6 +2,9 @@ import nextCoreWebVitals from 'eslint-config-next/core-web-vitals';
 import typescriptEslint from 'typescript-eslint';
 
 const eslintConfig = [
+  {
+    ignores: ['.next/**', '.wrangler/**', 'out/**'],
+  },
   ...nextCoreWebVitals,
   {
     rules: {

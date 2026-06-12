@@ -5,6 +5,7 @@ import { ThemeProvider } from '@/components/ThemeProvider';
 import { Navigation } from '@/components/Navigation';
 import BackgroundAnimation from '@/components/BackgroundAnimation';
 import PointerTechTrail from '@/components/PointerTechTrail';
+import CvChatAssistant from '@/components/CvChatAssistant';
 
 import './globals.css';
 import type React from 'react';
@@ -110,6 +111,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <PointerTechTrail />
             <Navigation />
             <main className="relative z-10">{children}</main>
+            <CvChatAssistant />
             <Analytics />
           </div>
         </ThemeProvider>
