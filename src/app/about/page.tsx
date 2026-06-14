@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { RESUME_DATA } from '@/data/resume-data';
 import { TerminalWindow } from '@/components/TerminalWindow';
 import { BriefcaseBusiness, GraduationCap, Link as LinkIcon, Mail, MapPin } from 'lucide-react';
+import { ResumeExportButton } from '@/components/ResumeExportButton';
 
 export const metadata: Metadata = {
   title: 'About - Mr Vimal Govind Markkasseri',
@@ -72,7 +73,11 @@ export default function AboutPage() {
           Enterprise software engineer with a support-first view of architecture.
         </h1>
         <p className="text-muted-foreground max-w-3xl text-lg leading-8">{RESUME_DATA.summary}</p>
+        <div className="mt-6">
+          <ResumeExportButton />
+        </div>
       </div>
+      <ResumeExportButton placement="floating" />
 
       <section className="mb-12 grid gap-3 sm:grid-cols-3">
         <a

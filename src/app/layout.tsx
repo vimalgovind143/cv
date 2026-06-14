@@ -74,6 +74,28 @@ export const metadata: Metadata = {
     description: RESUME_DATA.about,
     creator: '@vimalgovind',
   },
+  icons: {
+    icon: [
+      {
+        url: '/favicon-vg.png?v=vg-4',
+        sizes: '512x512',
+        type: 'image/png',
+      },
+      {
+        url: '/favicon.ico?v=vg-4',
+        sizes: '16x16 32x32 48x48',
+        type: 'image/x-icon',
+      },
+    ],
+    shortcut: ['/favicon-vg.png?v=vg-4'],
+    apple: [
+      {
+        url: '/apple-icon.png?v=vg-4',
+        sizes: '180x180',
+        type: 'image/png',
+      },
+    ],
+  },
   alternates: {
     canonical: RESUME_DATA.personalWebsiteUrl,
     types: {
