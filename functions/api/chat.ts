@@ -2,8 +2,13 @@ import {
   CV_AI_QUOTA_MESSAGE,
   CV_ASSISTANT_EMAIL,
   CV_OUT_OF_SCOPE_MESSAGE,
+  CV_SENSITIVE_QUESTION_MESSAGE,
+  CV_KNOWLEDGE_VERSION,
+  classifyCvQuestion,
   findRelevantCvKnowledge,
+  isGroundedIn,
 } from '../../src/lib/cv-knowledge';
+import { buildPrompt } from '../../src/lib/cv-prompt.mjs';
 
 type AiBinding = {
   run: (
@@ -31,6 +36,7 @@ type ChatRequest = {
 
 const MODEL = '@cf/meta/llama-3.2-1b-instruct';
 const MAX_MESSAGE_LENGTH = 400;
+const MAX_ANSWER_LENGTH = 600;
 
 function jsonResponse(body: unknown, init?: ResponseInit) {
   return Response.json(body, {
@@ -103,32 +109,11 @@ function isQuotaError(error: unknown) {
   return /quota|limit|rate|exceed|exhaust|neuron|429|403/i.test(message);
 }
 
-function buildPrompt(question: string) {
-  const context = findRelevantCvKnowledge(question)
-    .map(
-      (entry, index) =>
-        `Source ${index + 1}: ${entry.title} (${entry.section})\n${entry.content}\nURL: ${
-          entry.url ?? '/'
-        }`,
-    )
-    .join('\n\n');
-
-  return `You are Ask Vimal, a concise assistant on Vimal Govind Markkasseri's CV website.
-Answer only using the CV context below.
-If the question is outside the CV context, reply exactly: "${CV_OUT_OF_SCOPE_MESSAGE}"
-If the answer is not explicitly in the context, reply exactly: "${CV_OUT_OF_SCOPE_MESSAGE}"
-Keep answers short, factual, and useful for recruiters or technical visitors.
-Do not invent private details, salary, availability, or claims not present in the context.
-Do not answer general knowledge, coding, politics, health, finance, jokes, news, or unrelated personal questions.
-Return only the final user-facing answer.
-
-CV context:
-${context}
-
-Question:
-${question}
-
-Answer:`;
+// Exported for the test suite so it can assert the anti-injection clause
+// and scope rules are present.
+export function buildPromptForTest(question: string) {
+  const knowledge = findRelevantCvKnowledge(question);
+  return buildPrompt(question, knowledge, CV_OUT_OF_SCOPE_MESSAGE);
 }
 
 function cleanAnswer(answer: string) {
@@ -138,7 +123,7 @@ function cleanAnswer(answer: string) {
     .replace(/^assistant\s*/i, '')
     .trim();
 
-  if (/^(we need to answer|we have to answer|according to the cv context)/i.test(cleaned)) {
+  if (/^(we need to answer|we have to answer|according to the (cv )?context)/i.test(cleaned)) {
     const lines = cleaned
       .split('\n')
       .map((line) => line.trim())
@@ -148,6 +133,32 @@ function cleanAnswer(answer: string) {
   }
 
   return cleaned;
+}
+
+// Strip Markdown artifacts that the small LLM sometimes emits. Plain
+// prose renders cleanly in the chat panel; bullets/headings/code blocks
+// would otherwise leak formatting characters into the conversation.
+function stripMarkdown(text: string): string {
+  return text
+    .replace(/```[\s\S]*?```/g, '')
+    .replace(/`([^`]+)`/g, '$1')
+    .replace(/\*\*([^*]+)\*\*/g, '$1')
+    .replace(/__([^_]+)__/g, '$1')
+    .replace(/(?<!\*)\*([^*\n]+)\*(?!\*)/g, '$1')
+    .replace(/(?<!_)_([^_\n]+)_(?!_)/g, '$1')
+    .replace(/^#+\s*/gm, '')
+    .replace(/^\s*[-*+]\s+/gm, '')
+    .replace(/^\s*\d+\.\s+/gm, '')
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function truncateAnswer(answer: string): string {
+  if (answer.length <= MAX_ANSWER_LENGTH) return answer;
+  const trimmed = answer.slice(0, MAX_ANSWER_LENGTH);
+  const lastSpace = trimmed.lastIndexOf(' ');
+  return `${trimmed.slice(0, lastSpace > 0 ? lastSpace : MAX_ANSWER_LENGTH)}…`;
 }
 
 export async function onRequestPost(context: PagesContext) {
@@ -182,6 +193,21 @@ export async function onRequestPost(context: PagesContext) {
     );
   }
 
+  // Classify first — sensitive and out-of-scope questions get their own
+  // dedicated fallback messages instead of the generic OUT_OF_SCOPE one.
+  const classification = classifyCvQuestion(message);
+
+  if (classification === 'out-of-scope') {
+    return jsonResponse({ answer: CV_OUT_OF_SCOPE_MESSAGE, fallback: true });
+  }
+
+  if (classification === 'sensitive') {
+    return jsonResponse({
+      answer: CV_SENSITIVE_QUESTION_MESSAGE,
+      fallback: true,
+    });
+  }
+
   const relevantKnowledge = findRelevantCvKnowledge(message);
 
   if (relevantKnowledge.length === 0) {
@@ -190,16 +216,32 @@ export async function onRequestPost(context: PagesContext) {
 
   try {
     const result = await context.env.AI.run(MODEL, {
-      prompt: buildPrompt(message),
+      prompt: buildPrompt(message, relevantKnowledge),
       max_tokens: 320,
       temperature: 0.2,
     });
-    const answer = cleanAnswer(extractAnswer(result));
+    const answer = stripMarkdown(
+      cleanAnswer(extractAnswer(result)),
+    );
+    const finalAnswer = truncateAnswer(answer);
+
+    // Defense-in-depth: if the model's answer is not plausibly grounded
+    // in the retrieved Sources, replace with the out-of-scope message so
+    // the user never sees hallucinated content.
+    if (!isGroundedIn(finalAnswer, relevantKnowledge)) {
+      return jsonResponse({
+        answer: CV_OUT_OF_SCOPE_MESSAGE,
+        fallback: true,
+        knowledgeVersion: CV_KNOWLEDGE_VERSION,
+      });
+    }
 
     return jsonResponse({
       answer:
-        answer ||
+        finalAnswer ||
         `I do not have enough information in Vimal's CV to answer that. You can contact him at ${CV_ASSISTANT_EMAIL}.`,
+      fallback: !finalAnswer,
+      knowledgeVersion: CV_KNOWLEDGE_VERSION,
     });
   } catch (error) {
     if (isQuotaError(error)) {
@@ -223,5 +265,5 @@ export async function onRequestPost(context: PagesContext) {
 }
 
 export function onRequestGet() {
-  return jsonResponse({ status: 'Ask Vimal is ready.' });
+  return jsonResponse({ status: 'Ask Vimal is ready.', version: CV_KNOWLEDGE_VERSION });
 }

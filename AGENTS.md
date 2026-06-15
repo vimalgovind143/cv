@@ -26,6 +26,8 @@ npm run lint         # ESLint (eslint.config.mjs + legacy .eslintrc.json)
 npm run type-check   # tsc --noEmit
 npm run format       # Prettier --write .
 npm run deploy       # next build && wrangler pages deploy out
+npm run check:knowledge  # validate CV_KNOWLEDGE array (placeholders, dupes, enums)
+npm test             # node --test on src/lib/*.test.mjs (retriever + prompt suite)
 ```
 
 ### Docker
@@ -89,13 +91,25 @@ src/
 │   └── resume-data.tsx        # SINGLE source of truth for all CV content
 ├── lib/
 │   ├── blog.ts                # Markdown loading, reading time, tag filtering
-│   ├── cv-knowledge.ts        # Knowledge base fed to CvChatAssistant
+│   ├── cv-knowledge.ts        # Typed facade re-exporting the .mjs modules below
+│   ├── cv-knowledge-data.mjs  # CV_KNOWLEDGE array (plain ESM, no TS toolchain)
+│   ├── cv-knowledge-pure.mjs  # Dependency-free retriever: tokenize/stem/
+│   │                          #   synonyms/bigrams/classify/grounding
+│   ├── cv-knowledge.test.mjs  # node --test suite for the retriever + KB integrity
+│   ├── cv-prompt.mjs          # Pure chat-prompt builder (anti-injection rules)
+│   ├── cv-prompt.test.mjs     # node --test suite for the prompt builder
 │   ├── structured-data.ts     # JSON-LD (Person, etc.) generators
 │   └── utils.ts               # `cn()` helper (clsx + tailwind-merge)
 ├── types/
 │   └── resume.ts              # WorkExperience, Project, Education, etc.
 └── images/logos/              # Company logo components (Amthal, MV, BIM, …)
 ```
+
+> **Note on the chat-assistant layer:** the retrieval/prompt logic lives in
+> `*.mjs` files so it can run under bare `node --test` and be imported by the
+> `check:knowledge` validator without a TypeScript toolchain. `cv-knowledge.ts`
+> is now a thin typed facade that re-exports from those `.mjs` modules. Keep the
+> `.mjs` files dependency-free (no `@/` aliases, no npm packages, no FS/network).
 
 ### Key technologies
 
@@ -114,7 +128,7 @@ src/
 ### Important files
 
 - `src/data/resume-data.tsx` — edit this to change anything on the CV
-- `src/lib/cv-knowledge.ts` — edit this to change what the chat assistant knows
+- `src/lib/cv-knowledge-data.mjs` — edit this to change what the chat assistant knows (the typed facade `cv-knowledge.ts` re-exports it)
 - `src/content/blog/*.md` — Markdown blog posts
 - `src/app/layout.tsx` — metadata, fonts, theme, global providers
 - `src/app/globals.css` — Tailwind 4 `@theme` tokens, print styles
@@ -147,9 +161,29 @@ Posts are picked up at build time by `getAllPosts()` in `src/lib/blog.ts`. The
 ### Chat assistant (CvChatAssistant)
 
 `CvChatAssistant` calls a Cloudflare Workers AI binding (`wrangler.toml` →
-`[ai]`) using the knowledge entries in `src/lib/cv-knowledge.ts`. When the AI
-quota is exhausted it surfaces the contact email (`hey@hellovg.win`) — see
-`CV_AI_QUOTA_MESSAGE` and `CV_OUT_OF_SCOPE_MESSAGE`.
+`[ai]`) using the knowledge entries in `src/lib/cv-knowledge-data.mjs`. The
+retrieval + prompt logic lives in the dependency-free `.mjs` modules
+(`cv-knowledge-pure.mjs`, `cv-prompt.mjs`); the Pages Function
+`functions/api/chat.ts` wires them together.
+
+The chat handler classifies every question into one of three buckets before
+calling the model:
+
+- **out-of-scope** → `CV_OUT_OF_SCOPE_MESSAGE` (weather, code-writing, tutorials…)
+- **sensitive** → `CV_SENSITIVE_QUESTION_MESSAGE` (salary, visa, age… — politely
+  redirects to email). Note: the standalone word "remote" is *not* blocked, so
+  the FAQ can answer the remote-work question.
+- **in-scope** → retrieve KB entries, build the prompt (with anti-injection
+  rules), call the model, then run `isGroundedIn()` on the answer as
+  defense-in-depth — hallucinated answers are swapped for the out-of-scope
+  message. Answers are also markdown-stripped and truncated to 600 chars.
+
+When the AI quota is exhausted it surfaces the contact email
+(`hey@hellovg.win`) — see `CV_AI_QUOTA_MESSAGE`. Responses carry a
+`knowledgeVersion` stamp so the client can tell which KB revision answered.
+
+Validate the KB with `npm run check:knowledge`; test the retriever/prompt logic
+with `npm test`.
 
 ### Print / PDF export
 

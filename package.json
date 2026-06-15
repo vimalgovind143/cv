@@ -13,7 +13,9 @@
     "lint": "eslint .",
     "deploy": "next build && wrangler pages deploy out",
     "format": "prettier --write .",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "check:knowledge": "node scripts/check-knowledge.mjs",
+    "test": "node --test src/lib/*.test.mjs"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.12",
