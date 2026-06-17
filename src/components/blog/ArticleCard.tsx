@@ -9,7 +9,7 @@ interface ArticleCardProps {
 export function ArticleCard({ post }: ArticleCardProps) {
   return (
     <Link href={`/blog/${post.slug}`} className="group block">
-      <article className="border-border/80 bg-card/75 hover:border-neon-green/50 hover:bg-card flex h-full min-h-72 flex-col rounded-lg border p-6 transition-all duration-300">
+      <article className="border-border/80 bg-card/75 hover:border-neon-green/50 hover:bg-card motion-safe:group-hover:-translate-y-1 flex h-full min-h-72 flex-col rounded-lg border p-6 shadow-sm transition-all duration-300 group-hover:shadow-lg group-hover:shadow-black/5">
         <div className="text-muted-foreground mb-3 flex items-center gap-4 text-sm">
           <div className="flex items-center gap-1">
             <Calendar className="h-4 w-4" />

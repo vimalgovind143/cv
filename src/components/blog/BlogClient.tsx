@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { TagFilter } from './TagFilter';
 import { ArticleCard } from './ArticleCard';
+import { Reveal } from '@/components/motion';
 import type { PostMeta } from '@/lib/blog';
 import { Search } from 'lucide-react';
 
@@ -46,8 +47,10 @@ export function BlogClient({ posts, tags }: BlogClientProps) {
 
       {filtered.length > 0 ? (
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {filtered.map((post) => (
-            <ArticleCard key={post.slug} post={post} />
+          {filtered.map((post, index) => (
+            <Reveal key={post.slug} delay={Math.min(index, 8) * 0.06} className="h-full">
+              <ArticleCard post={post} />
+            </Reveal>
           ))}
         </div>
       ) : (

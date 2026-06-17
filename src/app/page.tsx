@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ArrowRight, BriefcaseBusiness, ExternalLink, Mail, MapPin, Newspaper } from 'lucide-react';
 import { RESUME_DATA } from '@/data/resume-data';
 import { TerminalWindow } from '@/components/TerminalWindow';
+import { Reveal } from '@/components/motion';
 import { getRecentPosts } from '@/lib/blog';
 import { generatePersonStructuredData } from '@/lib/structured-data';
 import { CopyEmailButton } from '@/components/CopyEmailButton';
@@ -59,27 +60,46 @@ export default function HomePage() {
       />
       <section className="mb-20 grid gap-12 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-center">
         <div>
-          <div className="border-neon-green/30 bg-neon-green/10 text-neon-green mb-5 inline-flex items-center gap-2 rounded-full border px-3 py-1 font-mono text-xs">
+          <Reveal
+            as="div"
+            immediate
+            className="border-neon-green/30 bg-neon-green/10 text-neon-green mb-5 inline-flex items-center gap-2 rounded-full border px-3 py-1 font-mono text-xs"
+          >
             <span className="bg-neon-green h-1.5 w-1.5 rounded-full" />
             Available for enterprise backend and modernization work
-          </div>
-          <h1 className="font-heading text-foreground max-w-3xl text-4xl font-semibold tracking-normal md:text-6xl">
+          </Reveal>
+          <Reveal
+            as="h1"
+            immediate
+            delay={0.06}
+            className="font-heading text-foreground max-w-3xl text-4xl font-semibold tracking-normal md:text-6xl"
+          >
             Senior full stack engineer building reliable ERP and business systems.
-          </h1>
-          <p className="text-muted-foreground mt-6 max-w-2xl text-lg leading-8">
+          </Reveal>
+          <Reveal
+            as="p"
+            immediate
+            delay={0.12}
+            className="text-muted-foreground mt-6 max-w-2xl text-lg leading-8"
+          >
             I help teams modernize legacy platforms, design maintainable .NET services, and keep
             SQL-heavy enterprise applications fast, observable, and supportable.
-          </p>
-          <div className="text-muted-foreground mt-5 flex flex-wrap items-center gap-3 text-sm">
+          </Reveal>
+          <Reveal
+            as="div"
+            immediate
+            delay={0.18}
+            className="text-muted-foreground mt-5 flex flex-wrap items-center gap-3 text-sm"
+          >
             <span className="inline-flex items-center gap-2">
               <MapPin className="text-neon-green h-4 w-4" />
               {RESUME_DATA.location}
             </span>
             <span className="bg-muted-foreground/50 hidden h-1 w-1 rounded-full sm:block" />
             <span>{techStack.join(' / ')}</span>
-          </div>
+          </Reveal>
 
-          <div className="mt-8 flex flex-wrap items-center gap-3">
+          <Reveal as="div" immediate delay={0.24} className="mt-8 flex flex-wrap items-center gap-3">
             <a
               href={`mailto:${RESUME_DATA.contact.email}`}
               className="bg-neon-green hover:bg-neon-green/85 inline-flex h-11 items-center gap-2 rounded-lg px-5 font-mono text-sm font-semibold text-[#0b1118] transition-colors"
@@ -95,9 +115,9 @@ export default function HomePage() {
               <ArrowRight className="h-4 w-4" />
             </Link>
             <CopyEmailButton email={RESUME_DATA.contact.email} />
-          </div>
+          </Reveal>
 
-          <div className="mt-8 grid gap-3 sm:grid-cols-3">
+          <Reveal as="div" immediate delay={0.3} className="mt-8 grid gap-3 sm:grid-cols-3">
             {stats.map((stat) => (
               <div key={stat.label} className="border-border/80 bg-card/70 rounded-lg border p-4">
                 <div className="font-heading text-foreground text-2xl font-semibold">
@@ -106,10 +126,10 @@ export default function HomePage() {
                 <div className="text-muted-foreground mt-1 text-sm leading-5">{stat.label}</div>
               </div>
             ))}
-          </div>
+          </Reveal>
         </div>
 
-        <aside className="space-y-5">
+        <Reveal as="aside" immediate delay={0.2} className="space-y-5">
           <div className="border-border/80 bg-card/80 relative overflow-hidden rounded-lg border p-4 shadow-[0_18px_60px_rgba(0,0,0,0.22)]">
             <div className="border-border/70 relative overflow-hidden rounded-md border">
               <img
@@ -165,11 +185,11 @@ export default function HomePage() {
               </p>
             </div>
           </TerminalWindow>
-        </aside>
+        </Reveal>
       </section>
 
       <section className="mb-16">
-        <div className="mb-6 flex items-center justify-between">
+        <Reveal as="div" className="mb-6 flex items-center justify-between">
           <h2 className="font-heading text-foreground flex items-center gap-2 text-2xl font-semibold">
             <BriefcaseBusiness className="text-neon-green h-5 w-5" />
             Featured Projects
@@ -180,17 +200,17 @@ export default function HomePage() {
           >
             view all <ArrowRight className="h-3 w-3" />
           </Link>
-        </div>
+        </Reveal>
         <div className="grid gap-4 md:grid-cols-3">
-          {featuredProjects.map((project) => (
-            <a
-              key={project.title}
-              href={project.link?.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group border-border/80 bg-card/75 hover:border-neon-green/50 hover:bg-card flex min-h-64 flex-col rounded-lg border p-5 transition-all"
-            >
-              <div className="mb-3 flex items-start justify-between gap-2">
+          {featuredProjects.map((project, index) => (
+            <Reveal key={project.title} delay={index * 0.07} className="h-full">
+              <a
+                href={project.link?.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group border-border/80 bg-card/75 hover:border-neon-green/50 hover:bg-card motion-safe:hover:-translate-y-1 flex h-full min-h-64 flex-col rounded-lg border p-5 shadow-sm transition-all duration-300 hover:shadow-lg hover:shadow-black/5"
+              >
+                <div className="mb-3 flex items-start justify-between gap-2">
                 <h3 className="font-heading text-foreground group-hover:text-neon-green text-base font-semibold transition-colors">
                   {project.title}
                 </h3>
@@ -209,14 +229,15 @@ export default function HomePage() {
                   </span>
                 ))}
               </div>
-            </a>
+              </a>
+            </Reveal>
           ))}
         </div>
       </section>
 
       {recentPosts.length > 0 && (
         <section className="mb-16">
-          <div className="mb-6 flex items-center justify-between">
+          <Reveal as="div" className="mb-6 flex items-center justify-between">
             <h2 className="font-heading text-foreground flex items-center gap-2 text-2xl font-semibold">
               <Newspaper className="text-neon-blue h-5 w-5" />
               Recent Writing
@@ -227,28 +248,29 @@ export default function HomePage() {
             >
               all articles <ArrowRight className="h-3 w-3" />
             </Link>
-          </div>
+          </Reveal>
           <div className="grid gap-3">
-            {recentPosts.map((post) => (
-              <Link
-                key={post.slug}
-                href={`/blog/${post.slug}`}
-                className="group border-border/80 bg-card/70 hover:border-neon-blue/50 grid gap-2 rounded-lg border p-4 transition-colors md:grid-cols-[120px_1fr_auto] md:items-center"
-              >
-                <span className="text-muted-foreground font-mono text-xs">{post.date}</span>
-                <span className="font-heading text-foreground group-hover:text-neon-blue text-base font-medium transition-colors">
-                  {post.title}
-                </span>
-                <span className="text-muted-foreground hidden font-mono text-xs md:block">
-                  {post.tags.join(', ')}
-                </span>
-              </Link>
+            {recentPosts.map((post, index) => (
+              <Reveal key={post.slug} delay={index * 0.07}>
+                <Link
+                  href={`/blog/${post.slug}`}
+                  className="group border-border/80 bg-card/70 hover:border-neon-blue/50 motion-safe:hover:-translate-y-0.5 grid gap-2 rounded-lg border p-4 transition-all duration-300 md:grid-cols-[120px_1fr_auto] md:items-center"
+                >
+                  <span className="text-muted-foreground font-mono text-xs">{post.date}</span>
+                  <span className="font-heading text-foreground group-hover:text-neon-blue text-base font-medium transition-colors">
+                    {post.title}
+                  </span>
+                  <span className="text-muted-foreground hidden font-mono text-xs md:block">
+                    {post.tags.join(', ')}
+                  </span>
+                </Link>
+              </Reveal>
             ))}
           </div>
         </section>
       )}
 
-      <section className="mb-8">
+      <Reveal as="section" className="mb-8">
         <TerminalWindow title="subscribe.sh">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
@@ -268,7 +290,7 @@ export default function HomePage() {
             </a>
           </div>
         </TerminalWindow>
-      </section>
+      </Reveal>
     </div>
   );
 }

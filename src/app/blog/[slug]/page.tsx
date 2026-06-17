@@ -2,6 +2,7 @@ import { getAllPostSlugs, getPostBySlug, getRelatedPosts } from '@/lib/blog';
 import { generateBlogPostStructuredData } from '@/lib/structured-data';
 import { MarkdownRenderer } from '@/components/blog/MarkdownRenderer';
 import { TerminalWindow } from '@/components/TerminalWindow';
+import { Reveal } from '@/components/motion';
 import { Calendar, Tag, ArrowLeft, ArrowRight, Clock } from 'lucide-react';
 import Link from 'next/link';
 import type { Metadata } from 'next';
@@ -87,7 +88,8 @@ export default async function BlogPostPage({ params }: BlogPostProps) {
       </Link>
 
       {/* Header Terminal */}
-      <TerminalWindow title={`${slug}.md`} className="mb-10">
+      <Reveal immediate>
+        <TerminalWindow title={`${slug}.md`} className="mb-10">
         <div className="space-y-1">
           <p>
             <span className="text-neon-blue">title</span>
@@ -116,12 +118,18 @@ export default async function BlogPostPage({ params }: BlogPostProps) {
             <span className="text-muted-foreground">]</span>
           </p>
         </div>
-      </TerminalWindow>
+        </TerminalWindow>
+      </Reveal>
 
       {/* Title — sole H1 on the page */}
-      <h1 className="mb-4 font-heading text-3xl font-bold text-foreground md:text-4xl">
+      <Reveal
+        as="h1"
+        immediate
+        delay={0.08}
+        className="mb-4 font-heading text-3xl font-bold text-foreground md:text-4xl"
+      >
         {post.title}
-      </h1>
+      </Reveal>
 
       {/* Meta row */}
       <div className="mb-10 flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
@@ -153,9 +161,9 @@ export default async function BlogPostPage({ params }: BlogPostProps) {
       </div>
 
       {/* Content */}
-      <div className="mb-16">
+      <Reveal as="div" immediate delay={0.16} className="mb-16">
         <MarkdownRenderer content={post.contentHtml} />
-      </div>
+      </Reveal>
 
       {/* Related Posts */}
       {relatedPosts.length > 0 && (
@@ -166,7 +174,7 @@ export default async function BlogPostPage({ params }: BlogPostProps) {
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {relatedPosts.map((related) => (
               <Link key={related.slug} href={`/blog/${related.slug}`} className="group block">
-                <div className="h-full rounded-lg border border-border bg-card p-4 transition-all hover:border-neon-green/50">
+                <div className="motion-safe:group-hover:-translate-y-1 h-full rounded-lg border border-border bg-card p-4 shadow-sm transition-all duration-300 hover:border-neon-green/50 hover:shadow-lg hover:shadow-black/5">
                   <p className="mb-1 font-mono text-xs text-muted-foreground">{related.date}</p>
                   <h3 className="mb-2 font-heading text-sm font-semibold text-foreground transition-colors group-hover:text-neon-green">
                     {related.title}

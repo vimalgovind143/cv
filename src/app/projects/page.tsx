@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { ArrowLeft, ExternalLink, Layers3 } from 'lucide-react';
 import { RESUME_DATA } from '@/data/resume-data';
 import { TerminalWindow } from '@/components/TerminalWindow';
+import { Reveal } from '@/components/motion';
 
 export const metadata: Metadata = {
   title: 'Projects - Mr Vimal Govind Markkasseri',
@@ -46,7 +47,7 @@ export default function ProjectsPage() {
         ~/home
       </Link>
 
-      <div className="mb-12">
+      <Reveal as="div" immediate className="mb-12">
         <p className="text-neon-green mb-2 font-mono text-sm">~/projects</p>
         <h1 className="font-heading text-foreground mb-4 max-w-3xl text-4xl font-semibold md:text-5xl">
           Enterprise products across payroll, finance, operations, and modernization.
@@ -55,9 +56,10 @@ export default function ProjectsPage() {
           A selection of systems designed, built, modernized, and supported across ERP-heavy
           business environments.
         </p>
-      </div>
+      </Reveal>
 
-      <TerminalWindow title="ls -la projects/" className="mb-12">
+      <Reveal immediate delay={0.1}>
+        <TerminalWindow title="ls -la projects/" className="mb-12">
         <div className="grid gap-4 md:grid-cols-3">
           <div>
             <p className="text-muted-foreground font-mono text-xs">Portfolio size</p>
@@ -74,15 +76,16 @@ export default function ProjectsPage() {
             <p className="text-foreground mt-1">More reliable releases and cleaner operations</p>
           </div>
         </div>
-      </TerminalWindow>
+        </TerminalWindow>
+      </Reveal>
 
       <div className="grid gap-6 md:grid-cols-2">
-        {RESUME_DATA.projects.map((project) => (
-          <article
-            key={project.title}
-            className="group border-border/80 bg-card/75 hover:border-neon-green/50 hover:bg-card flex min-h-80 flex-col rounded-lg border p-6 transition-all"
-          >
-            <div className="mb-3 flex items-start justify-between gap-3">
+        {RESUME_DATA.projects.map((project, index) => (
+          <Reveal key={project.title} delay={index * 0.05} className="h-full">
+            <article
+              className="group border-border/80 bg-card/75 hover:border-neon-green/50 hover:bg-card motion-safe:hover:-translate-y-1 flex h-full min-h-80 flex-col rounded-lg border p-6 shadow-sm transition-all duration-300 hover:shadow-lg hover:shadow-black/5"
+            >
+              <div className="mb-3 flex items-start justify-between gap-3">
               <div>
                 <span className="border-neon-blue/30 bg-neon-blue/10 text-neon-blue mb-2 inline-flex items-center gap-1 rounded-md border px-2 py-1 font-mono text-xs">
                   <Layers3 className="h-3 w-3" />
@@ -119,7 +122,8 @@ export default function ProjectsPage() {
                 </span>
               ))}
             </div>
-          </article>
+            </article>
+          </Reveal>
         ))}
       </div>
     </div>

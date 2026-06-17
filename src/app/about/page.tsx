@@ -3,6 +3,7 @@ import { RESUME_DATA } from '@/data/resume-data';
 import { TerminalWindow } from '@/components/TerminalWindow';
 import { BriefcaseBusiness, GraduationCap, Link as LinkIcon, Mail, MapPin } from 'lucide-react';
 import { ResumeExportButton } from '@/components/ResumeExportButton';
+import { Reveal } from '@/components/motion';
 
 export const metadata: Metadata = {
   title: 'About - Mr Vimal Govind Markkasseri',
@@ -67,7 +68,7 @@ const skillGroups = [
 export default function AboutPage() {
   return (
     <div className="mx-auto max-w-4xl px-6 py-16">
-      <div className="mb-12">
+      <Reveal as="div" immediate className="mb-12">
         <p className="text-neon-green mb-2 font-mono text-sm">~/resume</p>
         <h1 className="font-heading text-foreground mb-4 text-4xl font-semibold md:text-5xl">
           Enterprise software engineer with a support-first view of architecture.
@@ -76,10 +77,10 @@ export default function AboutPage() {
         <div className="mt-6">
           <ResumeExportButton />
         </div>
-      </div>
+      </Reveal>
       <ResumeExportButton placement="floating" />
 
-      <section className="mb-12 grid gap-3 sm:grid-cols-3">
+      <Reveal as="section" immediate delay={0.1} className="mb-12 grid gap-3 sm:grid-cols-3">
         <a
           href={`mailto:${RESUME_DATA.contact.email}`}
           className="border-border/80 bg-card/70 text-muted-foreground hover:border-neon-green/50 hover:text-foreground flex items-center gap-3 rounded-lg border p-4 text-sm transition-colors"
@@ -105,9 +106,10 @@ export default function AboutPage() {
           <LinkIcon className="text-neon-green h-4 w-4" />
           hellovg.win
         </a>
-      </section>
+      </Reveal>
 
-      <TerminalWindow title="career-focus.txt" className="mb-12">
+      <Reveal immediate delay={0.15}>
+        <TerminalWindow title="career-focus.txt" className="mb-12">
         <div className="grid gap-4 md:grid-cols-3">
           <div>
             <p className="text-muted-foreground font-mono text-xs">Primary stack</p>
@@ -126,15 +128,20 @@ export default function AboutPage() {
             </p>
           </div>
         </div>
-      </TerminalWindow>
+        </TerminalWindow>
+      </Reveal>
 
       <section className="mb-12">
-        <h2 className="font-heading text-foreground mb-6 text-2xl font-semibold">
+        <Reveal as="h2" className="font-heading text-foreground mb-6 text-2xl font-semibold">
           Technology Stack
-        </h2>
+        </Reveal>
         <div className="grid gap-4 md:grid-cols-2">
-          {skillGroups.map((group) => (
-            <div key={group.title} className="border-border/80 bg-card/70 rounded-lg border p-5">
+          {skillGroups.map((group, index) => (
+            <Reveal
+              key={group.title}
+              delay={index * 0.06}
+              className="border-border/80 bg-card/70 motion-safe:hover:-translate-y-0.5 h-full rounded-lg border p-5 shadow-sm transition-all duration-300 hover:shadow-lg hover:shadow-black/5"
+            >
               <h3 className="font-heading text-foreground mb-3 text-base font-semibold">
                 {group.title}
               </h3>
@@ -148,22 +155,25 @@ export default function AboutPage() {
                   </span>
                 ))}
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>
 
       <section className="mb-12">
-        <h2 className="font-heading text-foreground mb-6 flex items-center gap-2 text-2xl font-semibold">
+        <Reveal
+          as="h2"
+          className="font-heading text-foreground mb-6 flex items-center gap-2 text-2xl font-semibold"
+        >
           <BriefcaseBusiness className="text-neon-green h-5 w-5" />
           Work Experience
-        </h2>
+        </Reveal>
         <div className="space-y-5">
-          {RESUME_DATA.work.map((job) => (
-            <article
-              key={job.title}
-              className="border-border/80 bg-card/70 relative rounded-lg border p-6"
-            >
+          {RESUME_DATA.work.map((job, index) => (
+            <Reveal key={job.title} delay={index * 0.06}>
+              <article
+                className="border-border/80 bg-card/70 motion-safe:hover:-translate-y-0.5 relative rounded-lg border p-6 transition-all duration-300 hover:shadow-lg hover:shadow-black/5"
+              >
               <div className="mb-3 flex flex-wrap items-start justify-between gap-3">
                 <div>
                   <h3 className="font-heading text-foreground text-lg font-semibold">
@@ -182,26 +192,34 @@ export default function AboutPage() {
                   {job.start} — {job.end}
                 </span>
               </div>
-              <p className="text-muted-foreground text-sm leading-7">{job.description}</p>
-            </article>
+                <p className="text-muted-foreground text-sm leading-7">{job.description}</p>
+              </article>
+            </Reveal>
           ))}
         </div>
       </section>
 
       <section>
-        <h2 className="font-heading text-foreground mb-6 flex items-center gap-2 text-2xl font-semibold">
+        <Reveal
+          as="h2"
+          className="font-heading text-foreground mb-6 flex items-center gap-2 text-2xl font-semibold"
+        >
           <GraduationCap className="text-neon-blue h-5 w-5" />
           Education
-        </h2>
+        </Reveal>
         <div className="grid gap-4 md:grid-cols-2">
-          {RESUME_DATA.education.map((edu) => (
-            <div key={edu.school} className="border-border/80 bg-card/70 rounded-lg border p-5">
+          {RESUME_DATA.education.map((edu, index) => (
+            <Reveal
+              key={edu.school}
+              delay={index * 0.06}
+              className="border-border/80 bg-card/70 motion-safe:hover:-translate-y-0.5 h-full rounded-lg border p-5 shadow-sm transition-all duration-300 hover:shadow-lg hover:shadow-black/5"
+            >
               <h3 className="font-heading text-foreground text-lg font-semibold">{edu.degree}</h3>
               <p className="text-neon-blue font-mono text-sm">{edu.school}</p>
               <span className="text-muted-foreground font-mono text-xs">
                 {edu.start} — {edu.end}
               </span>
-            </div>
+            </Reveal>
           ))}
         </div>
       </section>
