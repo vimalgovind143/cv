@@ -179,14 +179,20 @@ export default function AboutPage() {
                   <h3 className="font-heading text-foreground text-lg font-semibold">
                     {job.title}
                   </h3>
-                  <a
-                    href={job.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-neon-blue font-mono text-sm hover:underline"
-                  >
-                    {job.company}
-                  </a>
+                  {job.link ? (
+                    <a
+                      href={job.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-neon-blue font-mono text-sm hover:underline"
+                    >
+                      {job.company}
+                    </a>
+                  ) : (
+                    <span className="text-muted-foreground font-mono text-sm">
+                      {job.company}
+                    </span>
+                  )}
                 </div>
                 <span className="border-border bg-muted text-muted-foreground rounded-md border px-2 py-1 font-mono text-xs">
                   {job.start} — {job.end}

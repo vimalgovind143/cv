@@ -1,11 +1,11 @@
-import { LucideIcon } from "lucide-react";
+import type { ComponentType, SVGProps } from "react";
 
 export interface WorkExperience {
   company: string;
-  link: string;
+  link?: string;
   badges: string[];
   title: string;
-  logo?: string;
+  logo?: { src: string };
   start: string;
   end: string;
   description: string;
@@ -17,6 +17,7 @@ export interface Project {
   techStack: string[];
   description: string;
   image?: string;
+  logo?: { src: string };
   link?: {
     label: string;
     href: string;
@@ -34,7 +35,7 @@ export interface Education {
 export interface SocialLink {
   name: string;
   url: string;
-  icon: LucideIcon;
+  icon: ComponentType<SVGProps<SVGSVGElement>>;
 }
 
 export interface Contact {
