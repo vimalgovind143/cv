@@ -12,48 +12,6 @@ import type { RESUME_DATA } from "../../data/resume-data";
 
 type ProjectTags = readonly string[];
 
-interface ProjectLinkProps {
-  title: string;
-  link?: string;
-}
-
-/**
- * Renders project title with optional link and status indicator
- */
-function ProjectLink({
-  title,
-  link,
-}: ProjectLinkProps) {
-  if (!link) {
-    return <span>{title}</span>;
-  }
-
-  return (
-    <>
-      <a
-        href={link}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center gap-1 hover:underline"
-        aria-label={`${title} project (opens in new tab)`}
-      >
-        {title}
-        <span
-          className="size-1 rounded-full bg-green-500"
-          title="Active project indicator"
-          aria-hidden="true"
-        />
-      </a>
-      <div
-        className="hidden font-mono text-xs underline print:visible"
-        aria-hidden="true"
-      >
-        {link.replace("https://", "").replace("www.", "").replace("/", "")}
-      </div>
-    </>
-  );
-}
-
 interface ProjectTagsProps {
   tags: ProjectTags;
 }
@@ -89,7 +47,6 @@ interface ProjectCardProps {
   title: string;
   description: string;
   tags: ProjectTags;
-  link?: string;
 }
 
 /**
@@ -99,14 +56,13 @@ function ProjectCard({
   title,
   description,
   tags,
-  link,
 }: ProjectCardProps) {
   return (
     <Card className="flex h-full flex-col overflow-hidden border p-3">
       <CardHeader>
         <div className="space-y-1">
           <CardTitle className="text-base">
-            <ProjectLink title={title} link={link} />
+            {title}
           </CardTitle>
           <CardDescription
             className="text-pretty font-mono text-xs print:text-[10px]"
@@ -152,7 +108,6 @@ export function Projects({
               title={project.title}
               description={project.description}
               tags={project.techStack}
-              link={project.link?.href}
             />
           </article>
         ))}

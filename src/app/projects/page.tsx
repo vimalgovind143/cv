@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowLeft, ExternalLink, Layers3 } from 'lucide-react';
+import { ArrowLeft, Layers3 } from 'lucide-react';
 import { RESUME_DATA } from '@/data/resume-data';
 import { TerminalWindow } from '@/components/TerminalWindow';
 import { Reveal } from '@/components/motion';
@@ -95,17 +95,6 @@ export default function ProjectsPage() {
                   {project.title}
                 </h2>
               </div>
-              {project.link && (
-                <a
-                  href={project.link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`Visit ${project.link.label}`}
-                  className="text-muted-foreground hover:text-neon-green shrink-0 transition-colors"
-                >
-                  <ExternalLink className="h-4 w-4" />
-                </a>
-              )}
             </div>
 
             <p className="text-muted-foreground mb-5 line-clamp-5 flex-1 text-sm leading-7">

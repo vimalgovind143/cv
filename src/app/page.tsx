@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowRight, BriefcaseBusiness, ExternalLink, Mail, MapPin, Newspaper } from 'lucide-react';
+import { ArrowRight, BriefcaseBusiness, Mail, MapPin, Newspaper } from 'lucide-react';
 import { RESUME_DATA } from '@/data/resume-data';
 import { TerminalWindow } from '@/components/TerminalWindow';
 import { Reveal } from '@/components/motion';
@@ -202,36 +202,35 @@ export default function HomePage() {
           </Link>
         </Reveal>
         <div className="grid gap-4 md:grid-cols-3">
-          {featuredProjects.map((project, index) => (
-            <Reveal key={project.title} delay={index * 0.07} className="h-full">
-              <a
-                href={project.link?.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group border-border/80 bg-card/75 hover:border-neon-green/50 hover:bg-card motion-safe:hover:-translate-y-1 flex h-full min-h-64 flex-col rounded-lg border p-5 shadow-sm transition-all duration-300 hover:shadow-lg hover:shadow-black/5"
-              >
-                <div className="mb-3 flex items-start justify-between gap-2">
-                <h3 className="font-heading text-foreground group-hover:text-neon-green text-base font-semibold transition-colors">
-                  {project.title}
-                </h3>
-                <ExternalLink className="text-muted-foreground h-3.5 w-3.5 shrink-0" />
-              </div>
-              <p className="text-muted-foreground mb-5 line-clamp-4 flex-1 text-sm leading-6">
-                {project.description}
-              </p>
-              <div className="flex flex-wrap gap-1">
-                {project.techStack.slice(0, 3).map((t) => (
-                  <span
-                    key={t}
-                    className="bg-muted text-muted-foreground rounded px-1.5 py-0.5 font-mono text-xs"
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
-              </a>
-            </Reveal>
-          ))}
+          {featuredProjects.map((project, index) => {
+            const cardClass =
+              'group border-border/80 bg-card/75 hover:border-neon-green/50 hover:bg-card motion-safe:hover:-translate-y-1 flex h-full min-h-64 flex-col rounded-lg border p-5 shadow-sm transition-all duration-300 hover:shadow-lg hover:shadow-black/5';
+
+            return (
+              <Reveal key={project.title} delay={index * 0.07} className="h-full">
+                <article className={cardClass}>
+                  <div className="mb-3 flex items-start justify-between gap-2">
+                    <h3 className="font-heading text-foreground group-hover:text-neon-green text-base font-semibold transition-colors">
+                      {project.title}
+                    </h3>
+                  </div>
+                  <p className="text-muted-foreground mb-5 line-clamp-4 flex-1 text-sm leading-6">
+                    {project.description}
+                  </p>
+                  <div className="flex flex-wrap gap-1">
+                    {project.techStack.slice(0, 3).map((t) => (
+                      <span
+                        key={t}
+                        className="bg-muted text-muted-foreground rounded px-1.5 py-0.5 font-mono text-xs"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </article>
+              </Reveal>
+            );
+          })}
         </div>
       </section>
 
